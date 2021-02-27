@@ -1,5 +1,7 @@
 # @noma
 
+[![@git-json-merge](https://circleci.com/gh/getnoma/noma.svg?style=shield)](https://app.circleci.com/pipelines/github/getnoma/noma)
+
 Why? Creating and maintaining micro services requires a lot of boilerplate configuration and setup. Over time the micro services will start to diverge and it becomes difficult to context switch between services as the same problems are solved in different ways in each service. The explicit goal of `noma` is to do away with most of the boiler plate and make it easy to develop micro services in an efficient and consistent manner, and to let the programmer focus on solving the business problem instead of YAK shaving.
 
 ## Getting started
@@ -63,8 +65,8 @@ $ npm start
 
 - [@noma/plugin-amqp](packages/@noma/plugin-amqp/README.md): AMQP plugin
 - [@noma/plugin-express](packages/@noma/plugin-express/README.md): Express Plugin
-- [@noma/plugin-http](packages/@noma/plugin-http/README.mdp): Http Plugin
-- [@noma/plugin-kafka](packages/@noma/plugin-kafka/README.mdp): Kafka Plugin
+- [@noma/plugin-http](packages/@noma/plugin-http/README.md): Http Plugin
+- [@noma/plugin-kafka](packages/@noma/plugin-kafka/README.md): Kafka Plugin
 - [@noma/plugin-mongodb](packages/@noma/plugin-mongodb/README.md): MongoDB Plugin
 - [@noma/plugin-redis](packages/@noma/plugin-redis/README.md): Redis Plugin
 - [@noma/plugin-ws](packages/@noma/plugin-ws/README.md): WS Plugin

@@ -3,7 +3,7 @@ const config = require('../index.js');
 describe('config', () => {
   describe('extends', () => {
     it('should equal @noma/eslint-config-noma', () => {
-      expect(config.extends).to.have.property('extends', '@noma/eslint-config-noma');
+      expect(config).to.have.property('extends', '@noma/eslint-config-noma');
     });
   });
 

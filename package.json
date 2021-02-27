@@ -9,8 +9,7 @@
     "postinstall": "npm run bootstrap",
     "start": "lerna exec npm start",
     "start:demo": "lerna exec npm start --scope demo",
-    "test": "lerna run test",
-    "prettier:write": "prettier --loglevel warn --write \"**/*.@(js|jsx|ts|mjs|json|css|scss|less|html|htm|md|yml|yaml)\""
+    "test": "lerna run test"
   },
   "repository": {
     "type": "git",
@@ -22,15 +21,5 @@
     "url": "https://github.com/noma/noma/issues"
   },
   "homepage": "https://github.com/noma/noma#readme",
-  "devDependencies": {
-    "@getnoma/eslint-config-getnoma": "7.1.0",
-    "@getnoma/prettier-config": "4.0.0",
-    "chai": "4.2.0",
-    "eslint-plugin-prettier": "3.1.4",
-    "lerna": "3.22.1",
-    "mocha": "8.1.3",
-    "prettier": "2.1.2"
-  },
-  "prettier": "@getnoma/prettier-config",
   "type": "module"
 }

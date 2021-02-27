@@ -1,0 +1,8 @@
+http:
+  servers:
+    default:
+      port: '${PORT}'
+      maxHeadersCount: 2000
+      requestTimeout: 0
+      timeout: 0
+      keepAliveTimeout: 5000

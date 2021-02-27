@@ -1,0 +1,11 @@
+kafka:
+  connections:
+    default:
+      clientId: "${env.SERVICE_NAME}"
+      ssl: true
+      brokers:
+        - "${env.KAFKA_BROKER}"
+      sasl:
+        mechanism: plain
+        username: "${env.KAFKA_USERNAME}"
+        password: "${env.KAFKA_PASSWORD}"

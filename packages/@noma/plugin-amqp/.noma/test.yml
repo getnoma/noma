@@ -1,0 +1,4 @@
+amqp:
+  connections:
+    default:
+      connectionString: amqp://localhost

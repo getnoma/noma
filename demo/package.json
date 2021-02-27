@@ -1,0 +1,30 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/worker/main.js",
+  "scripts": {
+    "start": "concurrently -r \"npm:start:*\"",
+    "start:web": "noma ./src/web/main.js",
+    "start:worker": "noma ./src/worker/main.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@noma/cli": "^1.0.0",
+    "@noma/plugin-amqp": "^1.0.0",
+    "@noma/plugin-express": "^1.0.0",
+    "@noma/plugin-http": "^1.0.0",
+    "@noma/plugin-mongodb": "^1.0.0",
+    "@noma/plugin-redis": "^1.0.0",
+    "@noma/plugin-ws": "^1.0.0",
+    "concurrently": "^5.3.0",
+    "cross-env": "7.0.2"
+  },
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3"
+  }
+}

@@ -1,0 +1,4 @@
+ws:
+  servers:
+    default:
+      httpServer: default

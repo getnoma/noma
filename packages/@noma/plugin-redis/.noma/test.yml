@@ -1,0 +1,4 @@
+redis:
+  clients:
+    default:
+      url: 'redis://localhost/${SERVICE_NAME}-test'

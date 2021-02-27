@@ -1,0 +1,36 @@
+type: object
+nullable: true
+properties:
+  plugins:
+    type: object
+    properties:
+      http:
+        title: HTTP Plugin Confiugration
+        type: object
+        nullable: true
+        properties:
+          servers:
+            title: Servers
+            type: object
+            additionalProperties:
+              $ref: '#/definitions/HttpServerConfig'
+definitions:
+  HttpServerConfig:
+    title: Server Configuration
+    type: object
+    properties:
+      port:
+        title: Port
+        type: number
+      maxHeadersCount:
+        title: Max Headers Count
+        type: number
+      requestTimeout:
+        title: Request Timeout
+        type: number
+      timeout:
+        title: Timeout
+        type: number
+      keepAliveTimeout:
+        title: Keep Alive Timeout
+        type: number

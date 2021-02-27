@@ -1,0 +1,25 @@
+{
+  "name": "@noma/cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "noma": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "mocha test/**/*.spec.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@noma/eslint-config-noma": "^1.0.0",
+    "@noma/eslint-config-noma-test": "^1.0.0",
+    "@noma/lib": "^1.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3"
+  },
+  "type": "module",
+  "dependencies": {
+    "commander": "^6.2.0"
+  }
+}

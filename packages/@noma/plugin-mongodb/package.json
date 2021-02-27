@@ -1,0 +1,21 @@
+{
+  "name": "@noma/plugin-mongodb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "mocha test/**/*.spec.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^3.6.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@noma/eslint-config-noma": "^1.0.0",
+    "@noma/eslint-config-noma-test": "^1.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3"
+  }
+}

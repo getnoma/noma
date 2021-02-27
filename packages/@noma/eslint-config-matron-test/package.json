@@ -1,0 +1,18 @@
+{
+  "name": "@noma/eslint-config-noma-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@noma/eslint-config-noma": "1.0.0"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "mocha": "8.1.3"
+  }
+}

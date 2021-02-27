@@ -1,0 +1,5 @@
+http: null
+express: null
+ws: null
+worker:
+  message: 'Hello, I am worker'

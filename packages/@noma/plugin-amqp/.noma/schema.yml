@@ -1,0 +1,20 @@
+
+title: AMQP Plugin Configuration
+nullable: true
+type: object
+properties:
+  connections:
+    title: Connections
+    type: object
+    patternProperties:
+      '[a-z][a-zA-Z0-9]*':
+        type: object
+        properties:
+          connectionString:
+            title: Connection String
+            description: ''
+            type: string
+        additionalProperties: false
+    required:
+      - default
+additionalProperties: false

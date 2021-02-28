@@ -1,48 +1,48 @@
-import mongodb from 'mongodb';
+import mongodb from 'mongodb'
 
-const { MongoClient } = mongodb;
+const { MongoClient } = mongodb
 
 export default async function ({ config }) {
   if (!config) {
-    return;
+    return
   }
 
   let mongodb = {
-    connections: {},
-  };
+    connections: {}
+  }
 
-  const { connections } = config;
+  const { connections } = config
 
   if (connections) {
-    for (let connection in connections) {
-      const { connectionString, collections } = connections[connection];
+    for (const connection in connections) {
+      const { connectionString, collections } = connections[connection]
 
       const client = await MongoClient.connect(connectionString, {
         useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
+        useUnifiedTopology: true
+      })
 
-      const db = client.db();
+      const db = client.db()
 
       if (collections) {
-        for (let collection in collections) {
-          const { indexes, schema } = collections[collection];
+        for (const collection in collections) {
+          const { indexes, schema } = collections[collection]
 
-          for (let index of indexes || []) {
-            const fields = index[0];
-            const options = { ...(index[1] || {}), background: true };
+          for (const index of indexes || []) {
+            const fields = index[0]
+            const options = { ...(index[1] || {}), background: true }
 
-            await db.collection(collection).createIndex(fields, options);
+            await db.collection(collection).createIndex(fields, options)
           }
 
           if (schema) {
             await db.command({
               collMod: collection,
               validator: {
-                $jsonSchema: schema,
+                $jsonSchema: schema
               },
-              validationLevel: 'strict',
-            });
+              validationLevel: 'strict'
+            })
           }
         }
       }
@@ -51,20 +51,20 @@ export default async function ({ config }) {
         ...mongodb,
         connections: {
           ...mongodb.connections,
-          [connection]: { client, collections, connectionString, db },
-        },
-      };
+          [connection]: { client, collections, connectionString, db }
+        }
+      }
     }
   }
 
-  const defaultConnection = mongodb.connections && mongodb.connections.default;
+  const defaultConnection = mongodb.connections && mongodb.connections.default
 
   if (defaultConnection) {
     mongodb = {
       ...mongodb,
-      ...defaultConnection,
-    };
+      ...defaultConnection
+    }
   }
 
-  return mongodb;
+  return mongodb
 }

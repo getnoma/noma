@@ -1,3 +1,6 @@
 {
-  "extends": ["@noma/eslint-config-noma-test"]
+  "extends": ["@noma/eslint-config-noma-test"],
+  "rules": {
+    "no-template-curly-in-string": "off"
+  }
 }

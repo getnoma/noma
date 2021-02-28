@@ -1,40 +1,40 @@
-import amqplib from 'amqplib';
+import amqplib from 'amqplib'
 
 export default async function ({ config }) {
   if (!config) {
-    return;
+    return
   }
-  
-  let amqp = {
-    connections: {},
-  };
 
-  const { connections } = config;
+  let amqp = {
+    connections: {}
+  }
+
+  const { connections } = config
 
   if (connections) {
     for (const connectionId in connections) {
-      const { connectionString } = connections[connectionId];
+      const { connectionString } = connections[connectionId]
 
-      const connection = await amqplib.connect(connectionString);
+      const connection = await amqplib.connect(connectionString)
 
       amqp = {
         ...amqp,
         connections: {
           ...amqp.connections,
-          [connectionId]: connection,
-        },
-      };
+          [connectionId]: connection
+        }
+      }
     }
   }
 
-  const defaultConnection = amqp.connections && amqp.connections.default;
+  const defaultConnection = amqp.connections && amqp.connections.default
 
   if (defaultConnection) {
     amqp = {
       ...amqp,
-      ...defaultConnection,
-    };
+      ...defaultConnection
+    }
   }
 
-  return amqp;
+  return amqp
 }

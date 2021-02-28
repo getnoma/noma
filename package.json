@@ -9,7 +9,8 @@
     "postinstall": "npm run bootstrap",
     "start": "lerna run start --parallel",
     "start:demo": "lerna run start --scope demo",
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "fix": "lerna run fix"
   },
   "repository": {
     "type": "git",

@@ -1,23 +1,23 @@
-import chai from 'chai';
+import chai from 'chai'
 
-import { isString, replaceValues } from '../src/index.js';
+import { isString, replaceValues } from '../src/index.js'
 
-const { expect } = chai;
+const { expect } = chai
 
 describe('@noma/obj', () => {
   describe('replaceVars', () => {
     it('should replace values', () => {
-      function replaceVars(value, vars) {
+      function replaceVars (value, vars) {
         if (!isString(value)) {
-          return value;
+          return value
         }
 
         return Object.keys(vars).reduce((value, varName) => {
-          const varValue = vars[varName];
-          const regex = new RegExp(`\\\${${varName}}`, 'gm');
+          const varValue = vars[varName]
+          const regex = new RegExp(`\\\${${varName}}`, 'gm')
 
-          return value.replace(regex, varValue);
-        }, value);
+          return value.replace(regex, varValue)
+        }, value)
       }
 
       const actual = replaceValues(
@@ -25,34 +25,34 @@ describe('@noma/obj', () => {
           foo: '${FOO}',
           bar: [
             {
-              baz: '${BAZ}',
-            },
+              baz: '${BAZ}'
+            }
           ],
           qox: {
-            kax: '${KAX}',
-          },
+            kax: '${KAX}'
+          }
         },
         value =>
           replaceVars(value, {
             FOO: 'Foo',
             BAZ: 'Baz',
-            KAX: 'Kax',
-          }),
-      );
+            KAX: 'Kax'
+          })
+      )
 
       const expected = {
         foo: 'Foo',
         bar: [
           {
-            baz: 'Baz',
-          },
+            baz: 'Baz'
+          }
         ],
         qox: {
-          kax: 'Kax',
-        },
-      };
+          kax: 'Kax'
+        }
+      }
 
-      expect(actual).to.deep.equal(expected);
-    });
-  });
-});
+      expect(actual).to.deep.equal(expected)
+    })
+  })
+})

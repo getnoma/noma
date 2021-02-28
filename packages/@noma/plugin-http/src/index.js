@@ -1,29 +1,29 @@
-import http from 'http';
+import http from 'http'
 
 export default async function ({ config }) {
   if (!config) {
-    return;
+    return
   }
 
-  const servers = {};
+  const servers = {}
 
-  for (let serverId in config.servers) {
-    const serverConfig = config.servers[serverId];
+  for (const serverId in config.servers) {
+    const serverConfig = config.servers[serverId]
 
-    servers[serverId] = createServer(serverConfig);
+    servers[serverId] = createServer(serverConfig)
   }
 
-  return { server: servers.default, servers };
+  return { server: servers.default, servers }
 }
 
-function createServer(config) {
-  const server = http.createServer();
-  
-  server.port = config.port;
+function createServer (config) {
+  const server = http.createServer()
+
+  server.port = config.port
 
   server.listen(config.port, () => {
-    console.info(`Listening on http://localhost:${config.port}`);
-  });
+    console.info(`Listening on http://localhost:${config.port}`)
+  })
 
-  return server;
+  return server
 }

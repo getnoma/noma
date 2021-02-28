@@ -1,28 +1,28 @@
-import nomaPluginMongoDb from '../src/index.js';
+import nomaPluginMongoDb from '../src/index.js'
 
 describe('mongodb', () => {
-  let mongodb;
+  let mongodb
 
   before(async () => {
     mongodb = await nomaPluginMongoDb({
       config: {
         connections: {
           primary: {
-            connectionString: 'mongodb://localhost',
+            connectionString: 'mongodb://localhost'
           },
           secondary: {
-            connectionString: 'mongodb://localhost',
-          },
+            connectionString: 'mongodb://localhost'
+          }
         }
-      },
-    });
-  });
+      }
+    })
+  })
 
   it('should have a primary connection', () => {
-    expect(mongodb.connections).to.have.property('primary');
-  });
+    expect(mongodb.connections).to.have.property('primary')
+  })
 
   it('should have a secondary connection', () => {
-    expect(mongodb.connections).to.have.property('secondary');
-  });
-});
+    expect(mongodb.connections).to.have.property('secondary')
+  })
+})

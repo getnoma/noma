@@ -1,3 +1,3 @@
-import '../src/index.js';
+import '../src/index.js'
 
-describe('@noma/cli', () => {});
+describe('@noma/cli', () => {})

@@ -1,10 +1,10 @@
-import lib from '@noma/lib';
-import commander from 'commander';
+import lib from '@noma/lib'
+import commander from 'commander'
 
-const { Command } = commander;
+const { Command } = commander
 
-async function main() {
-  const program = new Command();
+async function main () {
+  const program = new Command()
 
   program
     .version('1.0.0')
@@ -16,13 +16,13 @@ async function main() {
 
     .action(async (id, { config, debug, plugins, watch }) => {
       try {
-        await lib(id, { config, debug, plugins, watch });
+        await lib(id, { config, debug, plugins, watch })
       } catch (err) {
-        console.error(err);
+        console.error(err)
       }
-    });
+    })
 
-  await program.parseAsync(process.argv);
+  await program.parseAsync(process.argv)
 }
 
-main();
+main()

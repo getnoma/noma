@@ -1,98 +1,98 @@
-import path from 'path';
-import resolve from 'resolve';
-import toposort from 'toposort';
-import util from 'util';
-import { loadJsonFile } from '@noma/jsn';
+import path from 'path'
+import resolve from 'resolve'
+import toposort from 'toposort'
+import util from 'util'
+import { loadJsonFile } from '@noma/jsn'
 
-const resolveAsync = util.promisify(resolve);
+const resolveAsync = util.promisify(resolve)
 
-export async function loadPackageObj(packageDir) {
-  const packageJsonFile = path.join(packageDir, 'package.json');
+export async function loadPackageObj (packageDir) {
+  const packageJsonFile = path.join(packageDir, 'package.json')
 
-  return loadJsonFile(packageJsonFile);
+  return loadJsonFile(packageJsonFile)
 }
 
-export async function loadPackageDependencies(packageName, basedir, dependencyFilter) {
-  const { nodes } = await loadPackageDependencyGraph(packageName, basedir, dependencyFilter);
+export async function loadPackageDependencies (packageName, basedir, dependencyFilter) {
+  const { nodes } = await loadPackageDependencyGraph(packageName, basedir, dependencyFilter)
 
-  nodes.pop();
+  nodes.pop()
 
-  return nodes;
+  return nodes
 }
 
-export async function loadPackageDependencyGraph(packageName, basedir, dependencyFilter) {
-  const packageDir = await resolvePackageDir(packageName, basedir);
-  const packageObj = await loadPackageObj(packageDir);
+export async function loadPackageDependencyGraph (packageName, basedir, dependencyFilter) {
+  const packageDir = await resolvePackageDir(packageName, basedir)
+  const packageObj = await loadPackageObj(packageDir)
 
-  const depdendencies = packageObj.dependencies || {};
-  const dependencyPackageNames = Object.keys(depdendencies).filter(dependencyFilter);
+  const depdendencies = packageObj.dependencies || {}
+  const dependencyPackageNames = Object.keys(depdendencies).filter(dependencyFilter)
 
-  const packageDependencyGraph = { nodes: new Set([packageName]), edges: new Set() };
+  const packageDependencyGraph = { nodes: new Set([packageName]), edges: new Set() }
 
   for (const dependencyPackageName of dependencyPackageNames) {
     const dependencyPackageDependencyGraph = await loadPackageDependencyGraph(
       dependencyPackageName,
       basedir,
-      dependencyFilter,
-    );
+      dependencyFilter
+    )
 
-    packageDependencyGraph.edges.add([packageName, dependencyPackageName]);
+    packageDependencyGraph.edges.add([packageName, dependencyPackageName])
 
-    dependencyPackageDependencyGraph.edges.forEach(edge => packageDependencyGraph.edges.add(edge));
-    dependencyPackageDependencyGraph.nodes.forEach(node => packageDependencyGraph.nodes.add(node));
+    dependencyPackageDependencyGraph.edges.forEach(edge => packageDependencyGraph.edges.add(edge))
+    dependencyPackageDependencyGraph.nodes.forEach(node => packageDependencyGraph.nodes.add(node))
   }
 
-  packageDependencyGraph.edges = [...packageDependencyGraph.edges];
-  packageDependencyGraph.nodes = [...packageDependencyGraph.nodes];
+  packageDependencyGraph.edges = [...packageDependencyGraph.edges]
+  packageDependencyGraph.nodes = [...packageDependencyGraph.nodes]
 
   packageDependencyGraph.nodes = toposort
     .array(packageDependencyGraph.nodes, packageDependencyGraph.edges)
-    .reverse();
+    .reverse()
 
-  return packageDependencyGraph;
+  return packageDependencyGraph
 }
 
-export async function resolvePackageDir(id, basedir) {
-  let packageDir;
+export async function resolvePackageDir (id, basedir) {
+  let packageDir
 
   await resolveAsync(id, {
     basedir,
     packageFilter: (pkg, pkgfile) => {
-      packageDir = path.dirname(pkgfile);
+      packageDir = path.dirname(pkgfile)
 
-      return pkg;
-    },
-  });
+      return pkg
+    }
+  })
 
-  return packageDir;
+  return packageDir
 }
 
-export function resolvePackageNameSync(id, basedir) {
-  let packageName;
+export function resolvePackageNameSync (id, basedir) {
+  let packageName
 
   resolve.sync(id, {
     basedir,
     packageFilter: pkg => {
-      packageName = pkg.name;
+      packageName = pkg.name
 
-      return pkg;
-    },
-  });
+      return pkg
+    }
+  })
 
-  return packageName;
+  return packageName
 }
 
-export async function resolvePackageAsync(id, basedir) {
-  let package2;
+export async function resolvePackageAsync (id, basedir) {
+  let package2
 
   await resolveAsync(id, {
     basedir,
     packageFilter: pkg => {
-      package2 = pkg.name;
+      package2 = pkg.name
 
-      return pkg;
-    },
-  });
+      return pkg
+    }
+  })
 
-  return package2;
+  return package2
 }

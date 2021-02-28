@@ -1,3 +1,0 @@
-require: chai/register-expect
-spec: './test/**/*.test.js'
-exit: true

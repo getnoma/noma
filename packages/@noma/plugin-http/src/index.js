@@ -18,6 +18,8 @@ export default async function ({ config }) {
 
 function createServer(config) {
   const server = http.createServer();
+  
+  server.port = config.port;
 
   server.listen(config.port, () => {
     console.info(`Listening on http://localhost:${config.port}`);

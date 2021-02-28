@@ -1,18 +1,13 @@
-import { load } from '../src/index.js';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { loadConfig } from '../src/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-describe('cfg', () => {
+describe('@noma/cfg', () => {
   let cfg;
 
-  before(async () => {
-    cfg = await load('@noma/noma-config-test', process.cwd(), 'test');
-  });
+  describe('loadConfig', () => {
+    let config;
 
-  it('should load .', () => {
-    expect(cfg.env).to.eql('test')
+    before('load config', async () => {
+      config = await loadConfig('./', 'test');
+    })
   });
 });

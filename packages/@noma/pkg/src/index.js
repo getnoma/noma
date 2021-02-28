@@ -83,16 +83,16 @@ export function resolvePackageNameSync(id, basedir) {
 }
 
 export async function resolvePackageAsync(id, basedir) {
-  let package;
+  let package2;
 
   await resolveAsync(id, {
     basedir,
     packageFilter: pkg => {
-      package = pkg.name;
+      package2 = pkg.name;
 
       return pkg;
     },
   });
 
-  return package;
+  return package2;
 }

@@ -5,13 +5,15 @@ describe('amqp', () => {
 
   before(async () => {
     amqp = await nomaPluginAmqp({
-      connections: {
-        primary: {
-          connectionString: 'amqp://localhost',
-        },
-        secondary: {
-          connectionString: 'amqp://localhost',
-        },
+      config: {
+        connections: {
+          primary: {
+            connectionString: 'amqp://localhost',
+          },
+          secondary: {
+            connectionString: 'amqp://localhost',
+          },
+        }
       },
     });
   });

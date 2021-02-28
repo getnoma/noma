@@ -1,13 +1,11 @@
-export default async function main({ config, express }) {
-  console.log(config.web.message);
+export default async function main({ config, debug, express }) {
+  debug(config.web.message);
 
   const { app } = express;
 
-  app.get('/config', (req, res) => {
-    res.json(config);
-  });
-
   app.get('/', (req, res) => {
+    debug('GET /');
+
     res.send('HELLO WORLD');
   });
 }

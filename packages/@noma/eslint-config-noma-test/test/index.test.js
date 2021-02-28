@@ -1,6 +1,6 @@
 const config = require('../index.js');
 
-describe('config', () => {
+describe('@noma/eslint-config-noma-test', () => {
   describe('extends', () => {
     it('should equal @noma/eslint-config-noma', () => {
       expect(config).to.have.property('extends', '@noma/eslint-config-noma');

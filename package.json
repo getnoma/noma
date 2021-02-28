@@ -1,14 +1,14 @@
 {
   "name": "noma",
   "version": "1.0.0",
-  "description": "",
+  "description": "@noma",
   "main": "index.js",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "postinstall": "npm run bootstrap",
-    "start": "lerna exec npm start",
-    "start:demo": "lerna exec npm start --scope demo",
+    "start": "lerna run start --parallel",
+    "start:demo": "lerna run start --scope demo",
     "test": "lerna run test"
   },
   "repository": {
@@ -21,5 +21,8 @@
     "url": "https://github.com/noma/noma/issues"
   },
   "homepage": "https://github.com/noma/noma#readme",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "lerna": "3.22.1"
+  }
 }

@@ -5,20 +5,19 @@ import path from 'path';
 const debug = createDebug();
 
 try {
-  var envPath = path.join(process.cwd(), 'env.json');
-  var env = loadJsonFile(envPath);
-  delete env.APP_ENV;
-  delete env.NODE_ENV;
+  const envPath = path.join(process.cwd(), 'env.json');
+  const env = await loadJsonFile(envPath);
+
+  debug('loaded %s', envPath);
 
   Object.keys(env).forEach(key => {
     setProcessEnvVar(key, env[key]);
   });
 } catch (err) {
-  console.error('env.json not loaded');
+  debug('env.json not loaded');
 }
 
 function setProcessEnvVar(name, value) {
-  debug('setProcessEnvVar("%s", "%s")', name, value);
-
+  debug('set process.env.%s = "%s"', name, value);
   process.env[name] = value;
 }

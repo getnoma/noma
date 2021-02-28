@@ -5,13 +5,15 @@ describe('mongodb', () => {
 
   before(async () => {
     mongodb = await nomaPluginMongoDb({
-      connections: {
-        primary: {
-          connectionString: 'mongodb://localhost',
-        },
-        secondary: {
-          connectionString: 'mongodb://localhost',
-        },
+      config: {
+        connections: {
+          primary: {
+            connectionString: 'mongodb://localhost',
+          },
+          secondary: {
+            connectionString: 'mongodb://localhost',
+          },
+        }
       },
     });
   });

@@ -14,7 +14,10 @@ jobs:
       version:
         type: string
     docker:
+      - image: circleci/mongo:4.4.4
       - image: circleci/node:<< parameters.version >>
+      - image: circleci/redis:6.2.0
+      - image: rabbitmq:3.8
     steps:
       - checkout
       - run:

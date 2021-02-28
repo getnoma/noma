@@ -8,7 +8,7 @@
     "clean": "lerna clean",
     "postinstall": "npm run bootstrap",
     "start": "lerna run start --parallel",
-    "start:demo": "lerna run start --scope demo",
+    "start:demo": "lerna exec npm start --scope demo",
     "test": "lerna run test",
     "fix": "lerna run fix"
   },

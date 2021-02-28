@@ -23,7 +23,6 @@ describe('express', () => {
 
   describe('server', () => {
     it('should run on port 8080', () => {
-      console.log(http.server)
       expect(http.server).to.have.property('port', 8080)
     })
   })

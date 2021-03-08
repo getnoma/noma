@@ -13,6 +13,7 @@
     "kafkajs": "^1.15.0"
   },
   "type": "module",
+  "private": false,
   "devDependencies": {
     "@noma/eslint-config-noma": "^1.0.0-alpha.0",
     "@noma/eslint-config-noma-test": "^1.0.0-alpha.0",

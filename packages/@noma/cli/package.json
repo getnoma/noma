@@ -25,6 +25,7 @@
     "mocha-eslint": "7.0.0"
   },
   "type": "module",
+  "private": false,
   "dependencies": {
     "@noma/core": "^1.0.0-alpha.0",
     "commander": "^6.2.0"

@@ -14,6 +14,7 @@
     "express": "^4.17.1"
   },
   "type": "module",
+  "private": false,
   "devDependencies": {
     "@noma/eslint-config-noma": "^1.0.0-alpha.0",
     "@noma/eslint-config-noma-test": "^1.0.0-alpha.0",

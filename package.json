@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/noma/noma#readme",
   "type": "module",
+  "private": false,
   "devDependencies": {
     "lerna": "3.22.1"
   }

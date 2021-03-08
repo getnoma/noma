@@ -10,7 +10,7 @@ There are a lot of YAK-shaving required to build a production ready node applica
 
 Maybe there is a better way. Or not, time will tell. The purpose of NOMA is to do away with most of the YAK-shaving, and allow developers to focus on writing code that serves their users rather than the YAKs.
 
-We attempt to automate dependency orchestration for dependencies such as http servers and database connections, so instead of writing code like this:
+NOMA attempts to automate dependency orchestration for dependencies such as http servers and database connections, so instead of writing code like this:
 
 ```javascript
 import express from 'express';

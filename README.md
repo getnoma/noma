@@ -90,7 +90,7 @@ package.json
         "@noma/plugin-express": "^1.0.0"
     },
     "scripts": {
-        "start": "noma ."
+        "start": "export PORT=8080 noma ."
     }
 }
 ```

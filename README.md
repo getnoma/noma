@@ -1,5 +1,3 @@
-# @noma
-
 ![GETNOMA](getnoma.png)
 
 NOMA is an open source dependency orchestrator and code runner for [Node.js](https://nodejs.org/).

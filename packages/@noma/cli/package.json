@@ -1,6 +1,6 @@
 {
   "name": "@noma/cli",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -13,8 +13,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@noma/eslint-config-noma": "^0.0.0",
-    "@noma/eslint-config-noma-test": "^0.0.0",
+    "@noma/eslint-config-noma": "^1.0.0-alpha.0",
+    "@noma/eslint-config-noma-test": "^1.0.0-alpha.0",
     "chai": "^4.2.0",
     "eslint": "7.21.0",
     "eslint-plugin-import": "2.22.1",
@@ -26,7 +26,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@noma/core": "^0.0.0",
+    "@noma/core": "^1.0.0-alpha.0",
     "commander": "^6.2.0"
   }
 }

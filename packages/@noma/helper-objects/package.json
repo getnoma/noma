@@ -1,6 +1,6 @@
 {
   "name": "@noma/helper-objects",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -11,8 +11,8 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "@noma/eslint-config-noma": "^0.0.0",
-    "@noma/eslint-config-noma-test": "^0.0.0",
+    "@noma/eslint-config-noma": "^1.0.0-alpha.0",
+    "@noma/eslint-config-noma-test": "^1.0.0-alpha.0",
     "chai": "^4.2.0",
     "eslint": "7.21.0",
     "eslint-plugin-import": "2.22.1",
@@ -23,6 +23,6 @@
     "mocha-eslint": "7.0.0"
   },
   "dependencies": {
-    "@noma/helper-debug": "^0.0.0"
+    "@noma/helper-debug": "^1.0.0-alpha.0"
   }
 }

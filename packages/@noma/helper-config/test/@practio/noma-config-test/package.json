@@ -1,5 +1,6 @@
 {
   "name": "@noma/noma-config-test",
   "main": "default.yml",
-  "type": "module"
+  "type": "module",
+  "private": true
 }

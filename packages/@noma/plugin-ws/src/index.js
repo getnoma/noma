@@ -14,5 +14,5 @@ export default async function ({ config, http }) {
     servers[serverName] = new WebSocket.Server({ server: httpServer })
   }
 
-  return servers
+  return { server: servers.default, servers }
 }

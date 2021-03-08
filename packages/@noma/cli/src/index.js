@@ -1,4 +1,4 @@
-import lib from '@noma/lib'
+import lib from '@noma/core'
 import commander from 'commander'
 
 const { Command } = commander

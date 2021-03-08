@@ -51,15 +51,15 @@ $ npm start
 
 ### System
 
-- [@noma/cfg](packages/@noma/cfg/README.md): Configuration loading and validation.
+- [@noma/helper-config](packages/@noma/helper-config/README.md): Configuration loading and validation.
 - [@noma/cli](packages/@noma/cli/README.md): Command Line Interface.
-- [@noma/dbg](packages/@noma/dbg/README.md): Debugging utility.
-- [@noma/env](packages/@noma/env/README.md): Environment loading.
-- [@noma/jsn](packages/@noma/jsn/README.md): JSON file loading.
-- [@noma/lib](packages/@noma/lib/README.md): Noma Library.
-- [@noma/mdl](packages/@noma/mdl/README.md): Module resolution and loading.
-- [@noma/obj](packages/@noma/obj/README.md): Object inspection and tranformation.
-- [@noma/pkg](packages/@noma/pkg/README.md): Package resolution and loading.
+- [@noma/helper-debug](packages/@noma/helper-debug/README.md): Debugging utility.
+- [@noma/helper-env](packages/@noma/helper-env/README.md): Environment loading.
+- [@noma/helper-json](packages/@noma/helper-json/README.md): JSON file loading.
+- [@noma/core](packages/@noma/core/README.md): Noma Library.
+- [@noma/helper-modules](packages/@noma/helper-modules/README.md): Module resolution and loading.
+- [@noma/helper-objects](packages/@noma/helper-objects/README.md): Object inspection and tranformation.
+- [@noma/helper-packages](packages/@noma/helper-packages/README.md): Package resolution and loading.
 
 ### Plugins
 

@@ -1,7 +1,7 @@
 http:
   servers:
     default:
-      port: '${PORT}'
+      port: '${env.PORT}'
       maxHeadersCount: 2000
       requestTimeout: 0
       timeout: 0

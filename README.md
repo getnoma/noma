@@ -65,7 +65,7 @@ export function({ hello }) {
 ```
 
 ``` bash
-$ ./noma main.js
+$ noma ./main.js
 
 // Hello John
 ```

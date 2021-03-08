@@ -146,15 +146,25 @@ Helper packages used by `@noma/core`.
 
 ## Development
 
-Anyone can create and publish a noma plugin as `noma-plugin-random` or `@scope/noma-plugin-random`.
+Anyone can create and publish a noma plugin as `noma-plugin-[name]` or `@scope/noma-plugin-[name]`.
 
-```javascript
+@noma/plugin-numbers defined as:
+
+```js
 export default function (context) {
   return {
-    random: {
-      number: () => Math.random(),
-    },
+    random: () => Math.random(),
   };
+}
+```
+
+Can be used like this:
+
+```js
+export default function ({ numbers }) {
+  const { random } = numbers;
+
+  console.log(random());
 }
 ```
 

@@ -6,11 +6,12 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
+    "fix": "lerna run fix",
     "postinstall": "npm run bootstrap",
-    "start": "lerna run start --parallel",
+    "publish": "lerna publish",
     "start:demo": "lerna exec npm start --scope demo",
+    "start": "lerna run start --parallel",
     "test": "lerna run test",
-    "fix": "lerna run fix"
   },
   "repository": {
     "type": "git",

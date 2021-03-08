@@ -2,7 +2,7 @@
 
 ![GETNOMA](getnoma.png)
 
-NOMA is a automatic dependency orchestrator and code runner for [Node.js](https://nodejs.org/).
+NOMA is an open source dependency orchestrator and code runner for [Node.js](https://nodejs.org/).
 
 [![@git-json-merge](https://circleci.com/gh/getnoma/noma.svg?style=shield)](https://app.circleci.com/pipelines/github/getnoma/noma)
 

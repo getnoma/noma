@@ -1,5 +1,7 @@
 # @noma
 
+![GETNOMA](getnoma.png)
+
 NOMA is a automatic dependency orchestrator and code runner for [Node.js](https://nodejs.org/).
 
 [![@git-json-merge](https://circleci.com/gh/getnoma/noma.svg?style=shield)](https://app.circleci.com/pipelines/github/getnoma/noma)
@@ -10,11 +12,9 @@ There are a lot of YAK-shaving required to build a production ready node applica
 
 Maybe there is a better way. Or not, time will tell. The purpose of NOMA is to do away with most of the YAK-shaving, and allow developers to focus on writing code that serves their users rather than the YAKs.
 
-We attempt to that by automating dependency orchestration for dependencies such as http servers and database connections.
+We attempt to automate dependency orchestration for dependencies such as http servers and database connections, so instead of writing code like this:
 
-Instead of writing code like this:
-
-``` js
+```javascript
 import express from 'express';
 
 const app = expres();
@@ -29,7 +29,7 @@ app.listen(port);
 ```
 
 You write code like this:
-``` js
+```javascript
 export function main({ express }) {
   express.app.get('/', (req, res) => {
     res.send('Hello World');
@@ -43,7 +43,7 @@ NOMA is not a web server, or worker process, or anything in particular, it does 
 
 name.js:
 
-``` js
+```javascript
 export function() {
   return () => 'John'
 }
@@ -51,7 +51,7 @@ export function() {
 
 hello.js:
 
-``` js
+```javascript
 
 export function({ name }) {
   return () => console.log(`Hello ${name()}`);
@@ -60,7 +60,7 @@ export function({ name }) {
 
 main.js:
 
-``` js
+```javascript
 export function({ hello }) {
   hello();
 }
@@ -76,13 +76,13 @@ $ ./noma main.js
 
 Create a hello world express app using the noma CLI and the expres plugin.
 
-```bash
+``` bash
 $ npm install @noma/cli @noma/plugin-express
 ```
 
 package.json
 
-```js
+```javascript
 {
     "main": "src/main.js",
     "dependencies": {
@@ -97,7 +97,7 @@ package.json
 
 src/main.js
 
-```js
+```javascript
 export default async function main({ express }) {
   const { app } = express;
 
@@ -150,7 +150,7 @@ Anyone can create and publish a noma plugin as `noma-plugin-[name]` or `@scope/n
 
 @noma/plugin-numbers defined as:
 
-```js
+```javascript
 export default function (context) {
   return {
     random: () => Math.random(),
@@ -160,7 +160,7 @@ export default function (context) {
 
 Can be used like this:
 
-```js
+```javascript
 export default function ({ numbers }) {
   const { random } = numbers;
 

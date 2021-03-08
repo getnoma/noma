@@ -11,7 +11,7 @@
     "publish": "lerna publish",
     "start:demo": "lerna exec npm start --scope demo",
     "start": "lerna run start --parallel",
-    "test": "lerna run test",
+    "test": "lerna run test"
   },
   "repository": {
     "type": "git",

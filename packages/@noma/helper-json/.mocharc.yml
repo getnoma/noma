@@ -1,0 +1,4 @@
+require: chai/register-expect
+spec: './test/**/*.test.js'
+timeout: 60000
+exit: true

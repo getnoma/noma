@@ -1,4 +1,4 @@
 redis:
   clients:
     default:
-      url: 'redis://localhost/${SERVICE_NAME}'
+      url: 'redis://localhost/${env.SERVICE_NAME}'

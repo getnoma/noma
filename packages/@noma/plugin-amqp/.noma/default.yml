@@ -1,4 +1,4 @@
 amqp:
   connections:
     default:
-      connectionString: '${AMQP_CONNECTION_STRING}'
+      connectionString: '${env.AMQP_CONNECTION_STRING}'

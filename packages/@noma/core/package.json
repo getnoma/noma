@@ -15,7 +15,8 @@
     "@noma/helper-env": "^1.0.0-alpha.1",
     "@noma/helper-modules": "^1.0.0-alpha.1",
     "@noma/helper-objects": "^1.0.0-alpha.1",
-    "@noma/helper-packages": "^1.0.0-alpha.0"
+    "@noma/helper-packages": "^1.0.0-alpha.0",
+    "mustache": "^4.1.0"
   },
   "devDependencies": {
     "@noma/eslint-config-noma": "^1.0.0-alpha.0",

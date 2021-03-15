@@ -1,74 +1,67 @@
+title: MongoDb Plugin Configuration
 type: object
-nullable: true
 properties:
-  plugins:
+  connections:
+    title: Connections
     type: object
-    properties:
-      mongodb:
-        title: MongoDb Plugin Configuration
+    patternProperties:
+      '[a-z][a-zA-Z0-9]*':
         type: object
         properties:
-          connections:
-            title: Connections
+          connectionString:
+            title: Connection String
+            description: ''
+            type: string
+          collections:
+            title: Collections
+            description: ''
             type: object
-            patternProperties:
-              '[a-z][a-zA-Z0-9]*':
-                type: object
-                properties:
-                  connectionString:
-                    title: Connection String
-                    description: ''
-                    type: string
-                  collections:
-                    title: Collections
-                    description: ''
-                    type: object
-                    additionalProperties:
-                      description: ''
-                      type: object
-                      properties:
-                        schema:
-                          title: Schema
-                          description: JSON Schema
-                          type: object
-                        indexes:
-                          title: Indexes
+            additionalProperties:
+              description: ''
+              type: object
+              properties:
+                schema:
+                  title: Schema
+                  description: JSON Schema
+                  type: object
+                indexes:
+                  title: Indexes
+                  description: ''
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      - title: Index Specification
+                        type: object
+                        additionalProperties:
                           description: ''
-                          type: array
-                          items:
-                            type: array
-                            items:
-                              - title: Index Specification
-                                type: object
-                                additionalProperties:
-                                  description: ''
-                                  type:
-                                    - integer
-                                    - string
-                              - title: Index Options
-                                type: object
-                                properties:
-                                  sparse:
-                                    description:
-                                      Sparse indexes only contain entries for documents that have the
-                                      indexed field, even if the index field contains a
-                                      null value
-                                    type: boolean
-                                  unique:
-                                    description: A unique index ensures that the indexed fields do not store
-                                      duplicate values; i.e. enforces uniqueness for the
-                                      indexed fields.
-                                    type: boolean
-                                  partialFilterExpression:
-                                    type: object
-                                    additionalProperties: true
-                                  expireAfterSeconds:
-                                    description: Expire Documents after a Specified Number of Seconds
-                                    type: integer
-                                additionalProperties: false
-                            additionalItems: false
-                      additionalProperties: false
-                additionalProperties: false
-            required:
-              - default
+                          type:
+                            - integer
+                            - string
+                      - title: Index Options
+                        type: object
+                        properties:
+                          sparse:
+                            description:
+                              Sparse indexes only contain entries for documents that have the
+                              indexed field, even if the index field contains a
+                              null value
+                            type: boolean
+                          unique:
+                            description: A unique index ensures that the indexed fields do not store
+                              duplicate values; i.e. enforces uniqueness for the
+                              indexed fields.
+                            type: boolean
+                          partialFilterExpression:
+                            type: object
+                            additionalProperties: true
+                          expireAfterSeconds:
+                            description: Expire Documents after a Specified Number of Seconds
+                            type: integer
+                        additionalProperties: false
+                    additionalItems: false
+              additionalProperties: false
         additionalProperties: false
+    required:
+      - default
+additionalProperties: false

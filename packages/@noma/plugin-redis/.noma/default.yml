@@ -1,4 +1,4 @@
 redis:
   clients:
     default:
-      url: '${env.REDIS_CLIENT_URL}'
+      url: '{{REDIS_CLIENT_URL}}'

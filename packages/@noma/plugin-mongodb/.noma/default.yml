@@ -1,4 +1,4 @@
 mongodb:
   connections:
     default:
-      connectionString: '${env.MONGODB_CONNECTION_STRING}'
+      connectionString: '{{MONGODB_CONNECTION_STRING}}'

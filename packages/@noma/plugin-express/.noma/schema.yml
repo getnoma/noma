@@ -1,24 +1,14 @@
+title: Express Plugin Configuration
 type: object
 nullable: true
 properties:
-  plugins:
+  apps:
+    title: Apps
     type: object
-    properties:
-      express:
-        title: Express Plugin Configuration
-        type: object
-        nullable: true
-        properties:
-          apps:
-            title: Apps
-            type: object
-            additionalProperties:
-              $ref: '#/definitions/ExpressAppConfig'
-definitions:
-  ExpressAppConfig:
-    title: App Config
-    type: object
-    properties:
-      server:
-        title: Server
-        type: string
+    additionalProperties:
+      title: App Config
+      type: object
+      properties:
+        server:
+          title: Server
+          type: string

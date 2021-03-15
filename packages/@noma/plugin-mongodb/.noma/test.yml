@@ -1,4 +1,4 @@
 mongodb:
   connections:
     default:
-      connectionString: mongodb://localhost:27017/${env.SERVICE_NAME}-test
+      connectionString: mongodb://localhost:27017/{{SERVICE_NAME}}-test

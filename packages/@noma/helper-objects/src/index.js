@@ -11,11 +11,23 @@ export function replaceValues (value, replacer) {
 
   if (isObject(value)) {
     for (const prop in value) {
-      value[prop] = replaceValues(value[prop], replacer)
+      const newValue = replaceValues(value[prop], replacer)
+
+      if (newValue === undefined) {
+        delete value[prop]
+      } else {
+        value[prop] = newValue
+      }
     }
   } else if (isArray(value)) {
     for (const prop of value) {
-      value[prop] = replaceValues(value[prop], replacer)
+      const newValue = replaceValues(value[prop], replacer)
+
+      if (newValue === undefined) {
+        delete value[prop]
+      } else {
+        value[prop] = newValue
+      }
     }
   }
 

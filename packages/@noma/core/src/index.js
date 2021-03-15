@@ -5,6 +5,7 @@ import { createDebug, enableDebug } from '@noma/helper-debug'
 import { loadModule } from '@noma/helper-modules'
 import { isString, mergeObjects, replaceValues } from '@noma/helper-objects'
 import { loadPackageDependencies, resolvePackageDir } from '@noma/helper-packages'
+import Mustache from 'mustache'
 
 const DEFAULT_ENV = 'development'
 
@@ -74,13 +75,16 @@ export default async function (id = '.', options = {}) {
       return value
     }
 
-    return Object.keys(vars).reduce((value, varName) => {
-      const varValue = vars[varName]
-      const regex = new RegExp(`\\$\{env\\.${varName}}`, 'gm')
+    const newValue = Mustache.render(value, vars)
 
-      return value.replace(regex, varValue)
-    }, value)
+    if (newValue === '') {
+      return undefined
+    }
+
+    return newValue
   }
+
+  debug(config)
 
   validateConfig(config, configSchema)
 

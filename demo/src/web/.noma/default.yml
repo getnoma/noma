@@ -1,6 +1,2 @@
-http:
-  servers:
-    default:
-      port: 8080
 web:
   message: 'Hello, I am web'

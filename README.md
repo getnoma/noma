@@ -167,6 +167,12 @@ export default function ({ numbers }) {
 }
 ```
 
+## Connect
+
+- [Discord](https://discord.gg/mNnSKVtw3h)
+- [GitHub](https://github.com/getnoma/noma)
+- [Twitter](https://twitter.com/getnoma)
+
 ## License
 
 Copyright 2021 Jonatan Pedersen 

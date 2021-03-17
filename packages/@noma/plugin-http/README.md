@@ -45,9 +45,9 @@ config/default.yml:
 ``` yml
 http:
     servers:
-        first:
+        app:
             port: 8080
-        second:
+        api:
             port: 8181
 ```
 
@@ -55,17 +55,19 @@ main.js:
 
 ``` js
 export default async function main({ http }) {
-    const { first, second } = http.servers;
+    const { app, api } = http.servers;
 
-    assert(first.port === 8080)
-    assert(second.port === 8181)
+    assert(app.port === 8080)
+    assert(api.port === 8181)
 
-    first.on('request', (req, res) => {
-        res.send('hello world')
+    app.on('request', (req, res) => {
+        res.set('X-Http-Server-Name', 'app')
+        
     })
 
-    second.on('request', (req, res) => {
-        res.send('hello world')
+    api.on('request', (req, res) => {
+        res.set('X-Http-Server-Name', 'api')
+        res.end()
     })
 }
 ```

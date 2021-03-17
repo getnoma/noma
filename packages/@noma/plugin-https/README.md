@@ -74,7 +74,7 @@ config/default.yml:
 ``` yml
 https:
     servers:
-        first:
+        app:
             port: 4431
             cert: "-----BEGIN CERTIFICATE-----
 MIICNDCCAZ0CFGUw/BCL8bkMmk+KlekQKdfHS6OjMA0GCSqGSIb3DQEBCwUAMFkx
@@ -105,7 +105,7 @@ fuYj4HjeMPp+q3UZ1U2GOb4dTmB/c5JiLZshcOeEp6eaGViWJ+lqS1dWl78CQQCV
 2O6nBSTbZ0EJcBNSCgCdAkAOihtt9pNR2siFlNhsRcRbFeGWQIFdLzDtWfyPSdOp
 ppPdC1A3rPrjThOU9cYvBPAxOPSsvdQN2zA2HWWRCfNo
 -----END RSA PRIVATE KEY-----"
-        second:
+        api:
             port: 4432
             cert: "-----BEGIN CERTIFICATE-----
 MIICNDCCAZ0CFGUw/BCL8bkMmk+KlekQKdfHS6OjMA0GCSqGSIb3DQEBCwUAMFkx
@@ -142,17 +142,19 @@ main.js:
 
 ``` js
 export default async function main({ https }) {
-    const { first, second } = https.servers;
+    const { app, api } = http.servers;
 
-    assert(first.port === 4431)
-    assert(second.port === 4432)
+    assert(app.port === 8080)
+    assert(api.port === 8181)
 
-    first.on('request', (req, res) => {
-        res.send('hello world')
+    app.on('request', (req, res) => {
+        res.set('X-Https-Server-Name', 'app')
+        
     })
 
-    second.on('request', (req, res) => {
-        res.send('hello world')
+    api.on('request', (req, res) => {
+        res.set('X-Https-Server-Name', 'api')
+        res.end()
     })
 }
 ```

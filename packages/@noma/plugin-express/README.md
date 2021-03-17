@@ -73,19 +73,19 @@ main.js:
 ``` js
 export default async function main({ express }) {
     express.apps.default.get('/', (req, res, next) => {
-      res.set('X-App', 'default')
+      res.set('X-Express-App-Name', 'default')
 
       next()
     })
 
     express.apps.app.get('/', (req, res, next) => {
-      res.set('X-App', 'app')
+      res.set('X-Express-App-Name', 'app')
 
       res.end()
     })
 
     express.apps.api.get('/', (req, res, next) => {
-      res.set('X-Api', 'api')
+      res.set('X-Express-App-Name', 'api')
 
       res.end()
     })

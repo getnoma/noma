@@ -1,0 +1,21 @@
+title: HTTPS Plugin Confiugration
+type: object
+nullable: true
+properties:
+  servers:
+    title: HTTPS Servers
+    type: object
+    additionalProperties:
+      title: HTTPS Server Configuration
+      type: object
+      properties:
+        port:
+          title: Port
+          type: number
+          default: 443
+        key:
+          title: Key
+          type: string
+        cert:
+          title: Certificate
+          type: string

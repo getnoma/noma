@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "",
   "main": "./src/worker/main.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "dependencies": {
     "@noma/cli": "^1.0.0-alpha.2",
     "@noma/plugin-amqp": "^1.0.0-alpha.1",
-    "@noma/plugin-express": "^1.0.0-alpha.3",
+    "@noma/plugin-express": "^1.0.0-alpha.4",
     "@noma/plugin-http": "^1.0.0-alpha.3",
     "@noma/plugin-mongodb": "^1.0.0-alpha.2",
     "@noma/plugin-redis": "^1.0.0-alpha.2",

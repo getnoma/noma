@@ -1,6 +1,7 @@
 # @noma/plugin-express
 
-Creates Express Applications and optionally adds to configured HTTP or HTTPS servers.
+Creates [express.js](https://expressjs.com/) [applications](https://expressjs.com/en/4x/api.html#app) and optionally binds to one or more [HTTP](../plugin-http/README.md) and/or [HTTPS](../plugin-https/README.md) servers' `request` event listeners.
+
 
 ## Usage
 

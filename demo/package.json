@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "",
   "main": "./src/worker/main.js",
   "scripts": {
@@ -11,13 +11,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@noma/cli": "^1.0.0-alpha.1",
-    "@noma/plugin-amqp": "^1.0.0-alpha.0",
-    "@noma/plugin-express": "^1.0.0-alpha.2",
-    "@noma/plugin-http": "^1.0.0-alpha.2",
-    "@noma/plugin-mongodb": "^1.0.0-alpha.1",
-    "@noma/plugin-redis": "^1.0.0-alpha.1",
-    "@noma/plugin-ws": "^1.0.0-alpha.3",
+    "@noma/cli": "^1.0.0-alpha.2",
+    "@noma/plugin-amqp": "^1.0.0-alpha.1",
+    "@noma/plugin-express": "^1.0.0-alpha.3",
+    "@noma/plugin-http": "^1.0.0-alpha.3",
+    "@noma/plugin-mongodb": "^1.0.0-alpha.2",
+    "@noma/plugin-redis": "^1.0.0-alpha.2",
+    "@noma/plugin-ws": "^1.0.0-alpha.4",
     "concurrently": "^5.3.0"
   },
   "type": "module",

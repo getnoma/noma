@@ -3,25 +3,13 @@ type: object
 nullable: true
 properties:
   servers:
-    title: Servers
+    title: HTTP Servers
     type: object
     additionalProperties:
-      title: Server Configuration
+      title: HTTP Server Configuration
       type: object
       properties:
         port:
           title: Port
           type: number
           default: 7877
-        maxHeadersCount:
-          title: Max Headers Count
-          type: number
-        requestTimeout:
-          title: Request Timeout
-          type: number
-        timeout:
-          title: Timeout
-          type: number
-        keepAliveTimeout:
-          title: Keep Alive Timeout
-          type: number

@@ -120,15 +120,16 @@ $ npm start
 
 ### Plugins
 
-Sample plugins maintained by `getnoma`.
+Plugins maintained by `getnoma`.
 
-- [@noma/plugin-amqp](packages/@noma/plugin-amqp/README.md): AMQP plugin
-- [@noma/plugin-express](packages/@noma/plugin-express/README.md): Express Plugin
-- [@noma/plugin-http](packages/@noma/plugin-http/README.md): Http Plugin
-- [@noma/plugin-kafka](packages/@noma/plugin-kafka/README.md): Kafka Plugin
-- [@noma/plugin-mongodb](packages/@noma/plugin-mongodb/README.md): MongoDB Plugin
-- [@noma/plugin-redis](packages/@noma/plugin-redis/README.md): Redis Plugin
-- [@noma/plugin-ws](packages/@noma/plugin-ws/README.md): WS Plugin
+- [@noma/plugin-amqp](packages/@noma/plugin-amqp/README.md)
+- [@noma/plugin-express](packages/@noma/plugin-express/README.md)
+- [@noma/plugin-http](packages/@noma/plugin-http/README.md)
+- [@noma/plugin-https](packages/@noma/plugin-https/README.md)
+- [@noma/plugin-kafka](packages/@noma/plugin-kafka/README.md)
+- [@noma/plugin-mongodb](packages/@noma/plugin-mongodb/README.md)
+- [@noma/plugin-redis](packages/@noma/plugin-redis/README.md)
+- [@noma/plugin-ws](packages/@noma/plugin-ws/README.md)
 
 ### Helpers
 

@@ -16,6 +16,14 @@
     "@noma/plugin-http": "^1.0.0-alpha.3",
     "@noma/plugin-https": "^1.0.0-alpha.3"
   },
+  "peerDependenciesMeta": {
+    "@noma/plugin-http": {
+      "optional": true
+    },
+    "@noma/plugin-https": {
+      "optional": true
+    }
+  },
   "type": "module",
   "private": false,
   "devDependencies": {

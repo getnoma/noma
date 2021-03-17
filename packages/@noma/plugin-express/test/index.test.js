@@ -27,17 +27,35 @@ describe('express', () => {
       config: {
         apps: {
           default: {
-            server: 'default'
+            servers: ['default', 'foo', 'bar']
           },
           foo: {
-            server: 'foo'
+            servers: ['foo']
           },
           bar: {
-            server: 'bar'
+            servers: ['bar']
           }
         }
       },
       http
+    })
+
+    express.apps.default.get('/', (req, res, next) => {
+      res.set('X-App', 'default')
+
+      next()
+    })
+
+    express.apps.foo.get('/', (req, res, next) => {
+      res.set('X-App', 'foo')
+
+      res.end()
+    })
+
+    express.apps.bar.get('/', (req, res, next) => {
+      res.set('X-App', 'bar')
+
+      res.end()
     })
   })
 

@@ -9,6 +9,9 @@ properties:
       title: App Config
       type: object
       properties:
-        server:
-          title: Server
-          type: string
+        servers:
+          title: HTTP(S) Servers
+          type: array
+          items:
+            title: HTTP(S) Server ID
+            type: string

@@ -1,6 +1,6 @@
 import express from 'express'
 
-export default async function ({ config, http }) {
+export default async function ({ config, http, https }) {
   if (!config) {
     return
   }
@@ -8,17 +8,28 @@ export default async function ({ config, http }) {
   const apps = {}
 
   for (const appId in config.apps) {
-    const serverId = config.apps[appId].server
-
-    const server = http.servers[serverId]
-
-    if (!server) {
-      throw new Error('Server Not Found')
-    }
-
     const app = express()
 
-    server.on('request', app)
+    const servers = config.apps[appId].servers
+
+    if (servers) {
+      for (const serverId of servers) {
+        const httpServer = http && http.servers && http.servers[serverId]
+        const httpsServer = https && https.servers && https.servers[serverId]
+
+        if (httpServer === undefined && httpsServer === undefined) {
+          throw new Error('HTTP(S) Server Not Found')
+        }
+
+        if (httpServer) {
+          httpServer.on('request', app)
+        }
+
+        if (httpsServer) {
+          httpsServer.on('request', app)
+        }
+      }
+    }
 
     apps[appId] = app
   }

@@ -10,8 +10,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@noma/plugin-http": "^1.0.0-alpha.2",
     "express": "^4.17.1"
+  },
+  "optionalDependencies": {
+    "@noma/plugin-http": "^1.0.0-alpha.2",
+    "@noma/plugin-https": "^1.0.0-alpha.2"
   },
   "type": "module",
   "private": false,

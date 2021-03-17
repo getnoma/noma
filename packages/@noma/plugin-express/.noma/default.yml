@@ -1,4 +1,5 @@
 express:
   apps:
     default:
-      server: default
+      servers:
+        - default

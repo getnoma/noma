@@ -123,7 +123,7 @@ $ npm start
 
 Plugins maintained by `getnoma`.
 
-- [@noma/plugin-amqp](packages/@noma/plugin-amqp/README.md)
+- [@noma/plugin-amqplib](packages/@noma/plugin-amqplib/README.md)
 - [@noma/plugin-express](packages/@noma/plugin-express/README.md)
 - [@noma/plugin-http](packages/@noma/plugin-http/README.md)
 - [@noma/plugin-https](packages/@noma/plugin-https/README.md)

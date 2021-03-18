@@ -8,7 +8,7 @@ describe('express', () => {
       config: {
         servers: {
           default: {
-            port: 443,
+            port: 44301,
             cert: `-----BEGIN CERTIFICATE-----
 MIICNDCCAZ0CFGUw/BCL8bkMmk+KlekQKdfHS6OjMA0GCSqGSIb3DQEBCwUAMFkx
 CzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRl
@@ -46,15 +46,15 @@ ppPdC1A3rPrjThOU9cYvBPAxOPSsvdQN2zA2HWWRCfNo
   })
 
   describe('server', () => {
-    it('should run on port 443', () => {
-      expect(https.server).to.have.property('port', 443)
+    it('should run on port 44301', () => {
+      expect(https.server).to.have.property('port', 44301)
     })
   })
 
   describe('servers', () => {
     describe('default', () => {
-      it('should run on port 443', () => {
-        expect(https.servers.default).to.have.property('port', 443)
+      it('should run on port 44301', () => {
+        expect(https.servers.default).to.have.property('port', 44301)
       })
     })
   })

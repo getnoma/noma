@@ -82,15 +82,15 @@ package.json
 
 ```javascript
 {
-    "main": "./main.js",
-    "dependencies": {
-        "@noma/cli": "^1.0.0",
-        "@noma/plugin-express": "^1.0.0"
-        "@noma/plugin-http": "^1.0.0"
-    },
-    "scripts": {
-        "start": "noma ."
-    }
+  "main": "./main.js",
+  "dependencies": {
+    "@noma/cli": "^1.0.0",
+    "@noma/plugin-express": "^1.0.0"
+    "@noma/plugin-http": "^1.0.0"
+  },
+  "scripts": {
+    "start": "noma ."
+  }
 }
 ```
 

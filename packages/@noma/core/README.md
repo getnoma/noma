@@ -16,8 +16,6 @@ const id = './src/main.js';
 const options = {
   config: '.noma/config.yml', // null
   debug: true, // false
-  plugins: ['express', 'ws'] // ['*']
-  watch: false, // false
 };
 
 const context = await lib(id, options);

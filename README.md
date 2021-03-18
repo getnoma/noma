@@ -1,16 +1,16 @@
 ![GETNOMA](getnoma.png)
 
-NOMA is an open source dependency orchestrator and code runner for [Node.js](https://nodejs.org/).
+`NOMA` is an open source dependency orchestrator and code runner for [Node.js](https://nodejs.org/).
 
 [![@git-json-merge](https://circleci.com/gh/getnoma/noma.svg?style=shield)](https://app.circleci.com/pipelines/github/getnoma/noma)
 
 ### Why
 
-There are a lot of YAK-shaving required to build a production ready node application. The community has tried to solve this through use of templates and project generators. This can work well for some projects, but it does not scale very well in a micro app centric environment. Generated code goes stale and is never kept up to date when the generators themselves are updated. This leads to code divergence in projects that in turn increases the cost of maintaining these projects. Code generation is often just a one off benefit, a get started quickly scheme that too often loses its apeal.
+There are a lot of [yak shaving](http://projects.csail.mit.edu/gsb/old-archive/gsb-archive/gsb2000-02-11.html) required to build a production ready node application. The community has tried to solve this through use of templates and project generators. This can work well for some projects, but it does not scale very well in a micro app centric environment. Generated code goes stale and is never kept up to date when the generators themselves are updated. This leads to code divergence in projects that in turn increases the cost of maintaining these projects. Code generation is often just a one off benefit, a get started quickly scheme that too often loses its apeal.
 
-Maybe there is a better way. Or not, time will tell. The purpose of NOMA is to do away with most of the YAK-shaving, and allow developers to focus on writing code that serves their users rather than the YAKs.
+Maybe there is a better way. Or not, time will tell. The purpose of NOMA is to do away with most of the yak shaving, and allow developers to focus on writing code that serves their users rather than the yaks.
 
-NOMA attempts to automate dependency orchestration for dependencies such as http servers and database connections, so instead of writing code like this:
+`NOMA` attempts to automate dependency orchestration for dependencies such as http servers and database connections, so instead of writing code like this:
 
 ```javascript
 import express from 'express';
@@ -35,9 +35,9 @@ export function main({ express }) {
 }
 ```
 
-The express plugin for NOMA takes care of instantiating and starting the express application for you. The example above is only that, an example. 
+The express plugin for `NOMA` takes care of instantiating and starting the express application for you. The example above is only that, an example. 
 
-NOMA is not a web server, or worker process, or anything in particular, it does nothing on its own, other than to orchestrate your app's dependencies through plugins. A plugin is just a function that takes dependecies as arguments and returns a value that other plugins can depend on. In essence:
+`NOMA` is not a web server, or worker process, or anything in particular, it does nothing on its own, other than to orchestrate your app's dependencies through plugins. A plugin is just a function that takes dependecies as arguments and returns a value that other plugins can depend on. In essence:
 
 name.js:
 
@@ -75,25 +75,26 @@ $ noma ./main.js
 Create a hello world express app using the noma CLI and the expres plugin.
 
 ``` bash
-$ npm install @noma/cli @noma/plugin-express
+$ npm install @noma/cli @noma/plugin-express @noma/plugin-http
 ```
 
 package.json
 
 ```javascript
 {
-    "main": "src/main.js",
+    "main": "./main.js",
     "dependencies": {
         "@noma/cli": "^1.0.0",
         "@noma/plugin-express": "^1.0.0"
+        "@noma/plugin-http": "^1.0.0"
     },
     "scripts": {
-        "start": "export PORT=8080 noma ."
+        "start": "noma ."
     }
 }
 ```
 
-src/main.js
+./main.js
 
 ```javascript
 export default async function main({ express }) {
@@ -115,8 +116,8 @@ $ npm start
 
 ## Packages
 
-- [@noma/cli](packages/@noma/cli/README.md): Command Line Interface (Start here).
-- [@noma/core](packages/@noma/core/README.md): Core Library (Used by CLI, and can be used directly in tests).
+- [@noma/cli](packages/@noma/cli/README.md)
+- [@noma/core](packages/@noma/core/README.md)
 
 ### Plugins
 
@@ -135,13 +136,13 @@ Plugins maintained by `getnoma`.
 
 Helper packages used by `@noma/core`.
 
-- [@noma/helper-config](packages/@noma/helper-config/README.md): Configuration loading and validation.
-- [@noma/helper-debug](packages/@noma/helper-debug/README.md): Debugging utility.
-- [@noma/helper-env](packages/@noma/helper-env/README.md): Environment loading.
-- [@noma/helper-json](packages/@noma/helper-json/README.md): JSON file loading.
-- [@noma/helper-modules](packages/@noma/helper-modules/README.md): Module resolution and loading.
-- [@noma/helper-objects](packages/@noma/helper-objects/README.md): Object inspection and tranformation.
-- [@noma/helper-packages](packages/@noma/helper-packages/README.md): Package resolution and loading.
+- [@noma/helper-config](packages/@noma/helper-config/README.md)
+- [@noma/helper-debug](packages/@noma/helper-debug/README.md)
+- [@noma/helper-env](packages/@noma/helper-env/README.md)
+- [@noma/helper-json](packages/@noma/helper-json/README.md)
+- [@noma/helper-modules](packages/@noma/helper-modules/README.md)
+- [@noma/helper-objects](packages/@noma/helper-objects/README.md)
+- [@noma/helper-packages](packages/@noma/helper-packages/README.md)
 
 ## Development
 

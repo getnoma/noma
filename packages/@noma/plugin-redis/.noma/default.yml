@@ -1,4 +1,0 @@
-redis:
-  clients:
-    default:
-      url: '{{REDIS_CLIENT_URL}}'

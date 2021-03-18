@@ -14,7 +14,6 @@ import lib '@noma/core';
 const id = './src/main.js';
 
 const options = {
-  config: '.noma/config.yml', // null
   debug: true, // false
 };
 

@@ -12,7 +12,7 @@ properties:
         port:
           title: Port
           type: number
-          default: 443
+          default: 44378
         key:
           title: Key
           type: string

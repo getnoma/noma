@@ -11,12 +11,10 @@ async function main () {
     .arguments('<id>', '.')
     .option('-c, --config <config>', 'config file to load')
     .option('-d, --debug', 'output debugging information', false)
-    .option('-p, --plugins <plugins...>', 'plugins to load', '*')
-    .option('-w, --watch', 'watch for changes', false)
 
-    .action(async (id, { config, debug, plugins, watch }) => {
+    .action(async (id, { debug }) => {
       try {
-        await lib(id, { config, debug, plugins, watch })
+        await lib(id, { debug })
       } catch (err) {
         console.error(err)
       }

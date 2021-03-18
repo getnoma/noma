@@ -8,7 +8,7 @@ $ npm install @noma/cli
 
 ## Usage
 
-### Start
+### Execute
 
 Syntax:
 
@@ -16,7 +16,7 @@ Syntax:
 $ noma [id] [options]
 ```
 
-Exec main module defined in `package.json`:
+Execute main module defined in `package.json`:
 
 ```bash
 $ noma
@@ -28,7 +28,7 @@ or
 $ noma .
 ```
 
-Exec `foobar.js` module:
+Execute `foobar.js` module:
 
 ```bash
 $ noma ./foobar.js
@@ -50,12 +50,6 @@ $ noma --help
 
 ```bash
 $ noma --version
-```
-
-### Watch
-
-```bash
-$ noma --watch
 ```
 
 ## License

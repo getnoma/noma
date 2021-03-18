@@ -13,10 +13,7 @@ const debug = createDebug()
 
 export default async function (id = '.', options = {}) {
   const defaultOptions = {
-    config: null,
-    debug: false,
-    plugins: ['*'],
-    watch: false
+    debug: false
   }
 
   options = { ...defaultOptions, ...options }
@@ -88,7 +85,7 @@ export default async function (id = '.', options = {}) {
 
   validateConfig(config, configSchema)
 
-  // Run
+  // Execute
 
   const context = { basedir, config, debug, environment }
 

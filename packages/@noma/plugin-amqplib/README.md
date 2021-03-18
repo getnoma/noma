@@ -19,7 +19,7 @@ config/default.yml:
 amqplib:
   connections:
     default:
-      connectionString: 'amqp://default',
+      connectionString: "amqp://default"
 ```
 
 main.js:
@@ -38,9 +38,9 @@ config/default.yml:
 amqplib:
   connections:
     primary:
-      connectionString: 'amqp://primary',
+      connectionString: "amqp://primary",
     secondary:
-      connectionString: 'amqp://secondary',
+      connectionString: "amqp://secondary",
             
 ```
 

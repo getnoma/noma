@@ -19,7 +19,7 @@ config/default.yml:
 mongodb:
   connections:
     default:
-      connectionString: 'mongodb://default',
+      connectionString: "mongodb://default"
       collections:
         users:
           indexes:
@@ -52,9 +52,9 @@ config/default.yml:
 mongodb:
   connections:
     primary:
-      connectionString: 'mongodb://primary',
+      connectionString: "mongodb://primary"
     secondary:
-      connectionString: 'mongodb://secondary',
+      connectionString: "mongodb://secondary"
             
 ```
 

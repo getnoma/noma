@@ -1,10 +1,10 @@
-import nomaPluginAmqp from '../src/index.js'
+import nomaPluginAmqplib from '../src/index.js'
 
-describe('amqp', () => {
-  let amqp
+describe('amqplib', () => {
+  let amqplib
 
   before(async () => {
-    amqp = await nomaPluginAmqp({
+    amqplib = await nomaPluginAmqplib({
       config: {
         connections: {
           primary: {
@@ -19,10 +19,10 @@ describe('amqp', () => {
   })
 
   it('should have a primary connection', () => {
-    expect(amqp.connections).to.have.property('primary')
+    expect(amqplib.connections).to.have.property('primary')
   })
 
   it('should have a secondary connection', () => {
-    expect(amqp.connections).to.have.property('secondary')
+    expect(amqplib.connections).to.have.property('secondary')
   })
 })

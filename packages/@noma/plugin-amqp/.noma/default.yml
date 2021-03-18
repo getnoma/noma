@@ -1,4 +1,0 @@
-amqp:
-  connections:
-    default:
-      connectionString: '{{AMQP_CONNECTION_STRING}}'

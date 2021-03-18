@@ -29,6 +29,7 @@
   "devDependencies": {
     "@noma/eslint-config-noma": "^1.0.0-alpha.1",
     "@noma/eslint-config-noma-test": "^1.0.0-alpha.1",
+    "@noma/plugin-http": "^1.0.0-alpha.3",   
     "chai": "^4.2.0",
     "eslint": "7.21.0",
     "eslint-plugin-import": "2.22.1",

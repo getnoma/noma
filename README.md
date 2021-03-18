@@ -127,9 +127,7 @@ Plugins maintained by `getnoma`.
 - [@noma/plugin-express](packages/@noma/plugin-express/README.md)
 - [@noma/plugin-http](packages/@noma/plugin-http/README.md)
 - [@noma/plugin-https](packages/@noma/plugin-https/README.md)
-- [@noma/plugin-kafka](packages/@noma/plugin-kafka/README.md)
 - [@noma/plugin-mongodb](packages/@noma/plugin-mongodb/README.md)
-- [@noma/plugin-redis](packages/@noma/plugin-redis/README.md)
 - [@noma/plugin-ws](packages/@noma/plugin-ws/README.md)
 
 ### Helpers

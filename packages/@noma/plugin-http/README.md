@@ -8,9 +8,9 @@ main.js:
 
 ``` js
 export default async function main({ http }) {
-    http.server.on('request', (req, res) => {
-        res.send('hello world')
-    })
+  http.server.on('request', (req, res) => {
+    res.send('hello world')
+  })
 }
 ```
 
@@ -20,21 +20,21 @@ config/default.yml:
 
 ``` yml
 http:
-    servers:
-        default:
-            port: 80
+  servers:
+    default:
+      port: 80
 ```
 
 main.js:
 
 ``` js
 export default async function main({ http }) {
-    assert(http.server.port === 80)
-    assert(http.servers.default.port === 80)
+  assert(http.server.port === 80)
+  assert(http.servers.default.port === 80)
 
-    http.server.on('request', (req, res) => {
-        res.send('hello world')
-    })
+  http.server.on('request', (req, res) => {
+    res.send('hello world')
+  })
 }
 ```
 
@@ -44,31 +44,31 @@ config/default.yml:
 
 ``` yml
 http:
-    servers:
-        app:
-            port: 8080
-        api:
-            port: 8181
+  servers:
+    app:
+      port: 8001
+    api:
+      port: 8002
 ```
 
 main.js:
 
 ``` js
 export default async function main({ http }) {
-    const { app, api } = http.servers;
+  const { app, api } = http.servers;
 
-    assert(app.port === 8080)
-    assert(api.port === 8181)
+  assert(app.port === 8001)
+  assert(api.port === 8002)
 
-    app.on('request', (req, res) => {
-        res.set('X-Http-Server-Name', 'app')
-        
-    })
+  app.on('request', (req, res) => {
+    res.set('X-Http-Server-Name', 'app')
+    res.end()
+  })
 
-    api.on('request', (req, res) => {
-        res.set('X-Http-Server-Name', 'api')
-        res.end()
-    })
+  api.on('request', (req, res) => {
+    res.set('X-Http-Server-Name', 'api')
+    res.end()
+  })
 }
 ```
 
@@ -78,8 +78,8 @@ config/default.yml:
 
 ``` yml
 http:
-    servers:
-        default: null
+  servers:
+    default: null
 ```
 
 ## License

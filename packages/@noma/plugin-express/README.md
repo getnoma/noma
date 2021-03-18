@@ -9,9 +9,9 @@ main.js:
 
 ``` js
 export default async function main({ express }) {
-    express.app.get('/', (req, res) => {
-        res.send('hello world')
-    })
+  express.app.get('/', (req, res) => {
+    res.send('hello world')
+  })
 }
 ```
 
@@ -21,23 +21,23 @@ config/default.yml:
 
 ``` yml
 http:
-    servers:
-        other:
-            port: 8080
+  servers:
+    other:
+      port: 8080
 express:
-    apps:
-        default:
-            servers:
-                - other
+  apps:
+    default:
+      servers:
+        - other
 ```
 
 main.js:
 
 ``` js
 export default async function main({ express }) {
-    express.app.get('/', (req, res) => {
-        res.send('hello world')
-    })
+  express.app.get('/', (req, res) => {
+    res.send('hello world')
+  })
 }
 ```
 
@@ -47,49 +47,49 @@ config/default.yml:
 
 ``` yml
 https:
-    servers:
-        default:
-            port: 8080
-        app:
-            port: 8081
-        api:
-            port: 8082
+  servers:
+    default:
+      port: 8080
+    app:
+      port: 8081
+    api:
+      port: 8082
 express:
-    apps:
-        default:
-            servers:
-                - default
-                - app
-                - api
-        app:
-            servers:
-                - app
-        api:
-            servers:
-                - api
+  apps:
+    default:
+      servers:
+        - default
+        - app
+        - api
+    app:
+      servers:
+        - app
+    api:
+      servers:
+        - api
 ```
 
 main.js:
 
 ``` js
 export default async function main({ express }) {
-    express.apps.default.get('/', (req, res, next) => {
-      res.set('X-Express-App-Name', 'default')
+  express.apps.default.get('/', (req, res, next) => {
+    res.set('X-Express-App-Name', 'default')
 
-      next()
-    })
+    next()
+  })
 
-    express.apps.app.get('/', (req, res, next) => {
-      res.set('X-Express-App-Name', 'app')
+  express.apps.app.get('/', (req, res, next) => {
+    res.set('X-Express-App-Name', 'app')
 
-      res.end()
-    })
+    res.end()
+  })
 
-    express.apps.api.get('/', (req, res, next) => {
-      res.set('X-Express-App-Name', 'api')
+  express.apps.api.get('/', (req, res, next) => {
+    res.set('X-Express-App-Name', 'api')
 
-      res.end()
-    })
+    res.end()
+  })
 }
 ```
 
@@ -99,8 +99,8 @@ config/default.yml:
 
 ``` yml
 express:
-    apps:
-        default: null
+  apps:
+    default: null
 ```
 
 ## License

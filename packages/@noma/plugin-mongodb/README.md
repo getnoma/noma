@@ -8,7 +8,7 @@ main.js:
 
 ```js
 export default async function main({ mongodb }) {
-    const { client, collections, connectionString, db, connections } = mongodb;
+  const { client, collections, connectionString, db, connections } = mongodb;
 }
 ```
 ### Configuring the default connection
@@ -17,30 +17,30 @@ config/default.yml:
 
 ```yml
 mongodb:
-    connections:
-        default:
-            connectionString: 'mongodb://default',
-            collections:
-                users:
-                    indexes:
-                        - - id: 1
-                        - unique: 1
-                        - - name: 1
-                        - unique: 1
-                    schema:
-                        type: object
-                        properties:
-                            id:
-                                type: integer
-                            name:
-                                type: string
+  connections:
+    default:
+      connectionString: 'mongodb://default',
+      collections:
+        users:
+          indexes:
+            - - id: 1
+              - unique: 1
+            - - name: 1
+              - unique: 1
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
 ```
 
 main.js:
 
 ```js
 export default async function main({ mongodb }) {
-    const { client, collections, connectionString, db, connections } = mongodb;
+  const { client, collections, connectionString, db, connections } = mongodb;
 }
 ```
 
@@ -50,11 +50,11 @@ config/default.yml:
 
 ```yml
 mongodb:
-    connections:
-        primary:
-            connectionString: 'mongodb://primary',
-        secondary:
-            connectionString: 'mongodb://secondary',
+  connections:
+    primary:
+      connectionString: 'mongodb://primary',
+    secondary:
+      connectionString: 'mongodb://secondary',
             
 ```
 
@@ -62,8 +62,8 @@ main.js:
 
 ```js
 export default async function main({ mongodb }) {
-    const { connections } = mongodb;
-    const { primary, secondary } = connections;
+  const { connections } = mongodb;
+  const { primary, secondary } = connections;
 }
 ```
 
@@ -73,8 +73,8 @@ config/default.yml:
 
 ```yml
 mongodb:
-    connections:
-        default: null
+  connections:
+    default: null
 ```
 
 ## License

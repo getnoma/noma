@@ -8,9 +8,9 @@ main.js:
 
 ``` js
 export default async function main({ https }) {
-    https.server.on('request', (req, res) => {
-        res.send('hello world')
-    })
+  https.server.on('request', (req, res) => {
+    res.send('hello world')
+  })
 }
 ```
 
@@ -20,10 +20,10 @@ config/default.yml:
 
 ``` yml
 https:
-    servers:
-        default:
-            port: 443
-            cert: "-----BEGIN CERTIFICATE-----
+  servers:
+    default:
+      port: 443
+      cert: "-----BEGIN CERTIFICATE-----
 MIICNDCCAZ0CFGUw/BCL8bkMmk+KlekQKdfHS6OjMA0GCSqGSIb3DQEBCwUAMFkx
 CzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRl
 cm5ldCBXaWRnaXRzIFB0eSBMdGQxEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTAz
@@ -37,7 +37,7 @@ AQsFAAOBgQB+FLTkEgC++MZF6ejYIl6QWBKyqxlkmldRbzZKpIRjgZaDezHJ5km0
 UJ2osWNRuhoA0o7PjGOvG29OzywHL71QObEXused3R2f5pH/LEm6XqWUDN0F/h5S
 I6SxPqQcsoarSxJYES+gGr/F8sK7u7uEUm724YmzgFOl3Q6efxph3g==
 -----END CERTIFICATE-----"
-            key: "-----BEGIN RSA PRIVATE KEY-----
+      key: "-----BEGIN RSA PRIVATE KEY-----
 MIICXQIBAAKBgQCsrG0IihXAF9DPT84o1wMqIkvgt+/6vbTvRukOvd2B6gyVx5u9
 T77d7mrN37+m7J3RskVFVzoTTEKrh9an1WBDRGCqLy3s0GPlSH0kCNRulp/pqimW
 G29JHtph+FiNJsj1Iw5GmFbsHhg8cEzKedi++Lei++ATiKhmontrB7Bc0QIDAQAB
@@ -58,12 +58,12 @@ main.js:
 
 ``` js
 export default async function main({ https }) {
-    assert(http.server.port === 443)
-    assert(http.servers.default.port === 443)
+  assert(http.server.port === 443)
+  assert(http.servers.default.port === 443)
 
-    http.server.on('request', (req, res) => {
-        res.send('hello world')
-    })
+  http.server.on('request', (req, res) => {
+    res.send('hello world')
+  })
 }
 ```
 
@@ -73,10 +73,10 @@ config/default.yml:
 
 ``` yml
 https:
-    servers:
-        app:
-            port: 4431
-            cert: "-----BEGIN CERTIFICATE-----
+  servers:
+    app:
+      port: 44301
+      cert: "-----BEGIN CERTIFICATE-----
 MIICNDCCAZ0CFGUw/BCL8bkMmk+KlekQKdfHS6OjMA0GCSqGSIb3DQEBCwUAMFkx
 CzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRl
 cm5ldCBXaWRnaXRzIFB0eSBMdGQxEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTAz
@@ -90,7 +90,7 @@ AQsFAAOBgQB+FLTkEgC++MZF6ejYIl6QWBKyqxlkmldRbzZKpIRjgZaDezHJ5km0
 UJ2osWNRuhoA0o7PjGOvG29OzywHL71QObEXused3R2f5pH/LEm6XqWUDN0F/h5S
 I6SxPqQcsoarSxJYES+gGr/F8sK7u7uEUm724YmzgFOl3Q6efxph3g==
 -----END CERTIFICATE-----"
-            key: "-----BEGIN RSA PRIVATE KEY-----
+      key: "-----BEGIN RSA PRIVATE KEY-----
 MIICXQIBAAKBgQCsrG0IihXAF9DPT84o1wMqIkvgt+/6vbTvRukOvd2B6gyVx5u9
 T77d7mrN37+m7J3RskVFVzoTTEKrh9an1WBDRGCqLy3s0GPlSH0kCNRulp/pqimW
 G29JHtph+FiNJsj1Iw5GmFbsHhg8cEzKedi++Lei++ATiKhmontrB7Bc0QIDAQAB
@@ -105,9 +105,9 @@ fuYj4HjeMPp+q3UZ1U2GOb4dTmB/c5JiLZshcOeEp6eaGViWJ+lqS1dWl78CQQCV
 2O6nBSTbZ0EJcBNSCgCdAkAOihtt9pNR2siFlNhsRcRbFeGWQIFdLzDtWfyPSdOp
 ppPdC1A3rPrjThOU9cYvBPAxOPSsvdQN2zA2HWWRCfNo
 -----END RSA PRIVATE KEY-----"
-        api:
-            port: 4432
-            cert: "-----BEGIN CERTIFICATE-----
+    api:
+      port: 44302
+      cert: "-----BEGIN CERTIFICATE-----
 MIICNDCCAZ0CFGUw/BCL8bkMmk+KlekQKdfHS6OjMA0GCSqGSIb3DQEBCwUAMFkx
 CzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRl
 cm5ldCBXaWRnaXRzIFB0eSBMdGQxEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTAz
@@ -121,7 +121,7 @@ AQsFAAOBgQB+FLTkEgC++MZF6ejYIl6QWBKyqxlkmldRbzZKpIRjgZaDezHJ5km0
 UJ2osWNRuhoA0o7PjGOvG29OzywHL71QObEXused3R2f5pH/LEm6XqWUDN0F/h5S
 I6SxPqQcsoarSxJYES+gGr/F8sK7u7uEUm724YmzgFOl3Q6efxph3g==
 -----END CERTIFICATE-----"
-            key: "-----BEGIN RSA PRIVATE KEY-----
+      key: "-----BEGIN RSA PRIVATE KEY-----
 MIICXQIBAAKBgQCsrG0IihXAF9DPT84o1wMqIkvgt+/6vbTvRukOvd2B6gyVx5u9
 T77d7mrN37+m7J3RskVFVzoTTEKrh9an1WBDRGCqLy3s0GPlSH0kCNRulp/pqimW
 G29JHtph+FiNJsj1Iw5GmFbsHhg8cEzKedi++Lei++ATiKhmontrB7Bc0QIDAQAB
@@ -142,20 +142,20 @@ main.js:
 
 ``` js
 export default async function main({ https }) {
-    const { app, api } = http.servers;
+  const { app, api } = http.servers;
 
-    assert(app.port === 8080)
-    assert(api.port === 8181)
+  assert(app.port === 44301)
+  assert(api.port === 44302)
 
-    app.on('request', (req, res) => {
-        res.set('X-Https-Server-Name', 'app')
-        
-    })
+  app.on('request', (req, res) => {
+    res.set('X-Https-Server-Name', 'app')
+    res.end()
+  })
 
-    api.on('request', (req, res) => {
-        res.set('X-Https-Server-Name', 'api')
-        res.end()
-    })
+  api.on('request', (req, res) => {
+    res.set('X-Https-Server-Name', 'api')
+    res.end()
+  })
 }
 ```
 
@@ -165,8 +165,8 @@ config/default.yml:
 
 ``` yml
 https:
-    servers:
-        default: null
+  servers:
+    default: null
 ```
 
 ## License

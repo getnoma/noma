@@ -8,7 +8,7 @@
 
 There are a lot of [yak shaving](http://projects.csail.mit.edu/gsb/old-archive/gsb-archive/gsb2000-02-11.html) required to build a production ready node application. The community has tried to solve this through use of templates and project generators. This can work well for some projects, but it does not scale very well in a micro app centric environment. Generated code goes stale and is never kept up to date when the generators themselves are updated. This leads to code divergence in projects that in turn increases the cost of maintaining these projects. Code generation is often just a one off benefit, a get started quickly scheme that too often loses its apeal.
 
-Maybe there is a better way. Or not, time will tell. The purpose of NOMA is to do away with most of the yak shaving, and allow developers to focus on writing code that serves their users rather than the yaks.
+Maybe there is a better way. Or not, time will tell. The purpose of `NOMA` is to do away with most of the yak shaving, and allow developers to focus on writing code that serves their users rather than the yaks.
 
 `NOMA` attempts to automate dependency orchestration for dependencies such as http servers and database connections, so instead of writing code like this:
 

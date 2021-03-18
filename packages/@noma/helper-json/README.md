@@ -6,7 +6,7 @@
 $ npm install @noma/helper-json
 ```
 
-# Usage
+^## Usage
 
 ```javascript
 const data = await loadJsonFile('./data.json');

@@ -6,7 +6,7 @@
 $ npm install @noma/helper-config
 ```
 
-# Usage
+## Usage
 
 1. Import `@noma/helper-config` in your code before using any environment variables.
 

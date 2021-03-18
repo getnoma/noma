@@ -6,7 +6,7 @@
 $ npm install @noma/core
 ```
 
-# Usage
+^## Usage
 
 ```javascript
 import lib '@noma/core';

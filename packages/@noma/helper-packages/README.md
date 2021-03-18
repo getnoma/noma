@@ -6,7 +6,7 @@
 $ npm install @noma/helper-packages
 ```
 
-# Usage
+^## Usage
 
 ```javascript
 import { loadPackageObj } '@noma/helper-packages';

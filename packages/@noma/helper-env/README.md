@@ -6,7 +6,7 @@
 $ npm install @noma/helper-env
 ```
 
-# Usage
+## Usage
 
 Create an `env.json` file.
 

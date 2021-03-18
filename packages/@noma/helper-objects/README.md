@@ -6,7 +6,7 @@
 $ npm install @noma/helper-objects
 ```
 
-# Usage
+^## Usage
 
 ```javascript
 import { mergeObjects, interpolateObject, interpolateString, isObject } '@noma/helper-objects';

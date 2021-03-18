@@ -8,7 +8,7 @@ Create a debug instance with package name as namespace. See the [debug](https://
 $ npm install @noma/helper-debug
 ```
 
-# Usage
+## Usage
 
 `package.json`:
 

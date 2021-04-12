@@ -1,6 +1,6 @@
 {
   "name": "@noma/helper-debug",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "mocha-eslint": "7.0.0"
   },
   "dependencies": {
-    "@noma/helper-packages": "^1.0.0-alpha.1",
+    "@noma/helper-packages": "^1.0.0-alpha.2",
     "callsites": "^3.1.0",
     "debug": "^4.3.1",
     "supports-color": "^8.0.0"

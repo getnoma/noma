@@ -6,6 +6,7 @@ import { loadModule } from '@noma/helper-modules'
 import { isString, mergeObjects, replaceValues } from '@noma/helper-objects'
 import { loadPackageDependencies, resolvePackageDir } from '@noma/helper-packages'
 import Mustache from 'mustache'
+import dotProp from 'dot-prop'
 
 const DEFAULT_ENV = 'development'
 
@@ -29,7 +30,7 @@ export default async function (id = '.', options = {}) {
   debug('options: %O', options)
 
   const dependencies = await loadPackageDependencies('.', basedir, id =>
-    /^((@noma\/plugin-[a-z0-9-]+)|(@[a-z0-9-]+\/noma-plugin-[a-z0-9-]+)|(noma-plugin-[a-z0-9-]+))$/.test(
+    /^((@noma\/plugin-[a-z0-9-]+)|(@[a-z0-9-_.]+\/noma-plugin-[a-z0-9-_.]+)|(noma-plugin-[a-z0-9-_.]+))$/.test(
       id
     )
   )
@@ -96,10 +97,10 @@ export default async function (id = '.', options = {}) {
 
     const packageContext = {
       ...context,
-      config: config[packageShortName]
+      config: dotProp.get(config, packageShortName)
     }
 
-    context[packageShortName] = await _package.default(packageContext)
+    dotProp.set(context, packageShortName, await _package.default(packageContext))
   }
 
   const main = await loadModule(id, basedir)
@@ -124,5 +125,5 @@ function getEnvironment () {
 function getPackageShortName (packageName) {
   debug('getPackageShortName("%s")', packageName)
 
-  return packageName.replace(/^@[a-z0-9-]+\/(?:noma-)?plugin-([a-z0-9-]+)$/, '$1')
+  return packageName.replace(/^@[a-z0-9-_.]+\/(?:noma-)?plugin-([a-z0-9-_.]+)$/, '$1')
 }

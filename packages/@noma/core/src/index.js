@@ -48,8 +48,10 @@ export default async function (id = '.', options = {}) {
     const packageConfig = await loadConfig(packageDir, environment)
     const packageConfigSchema = await loadConfigSchema(packageDir)
     const packageShortName = getPackageShortName(dependency)
+    const packageNamespace = packageShortName.split('.')
+
     config = mergeObjects(config, packageConfig)
-    configSchema.properties[packageShortName] = packageConfigSchema
+    configSchema.properties[packageNamespace] = packageConfigSchema
   }
 
   const configDirs = getConfigDirs(id)

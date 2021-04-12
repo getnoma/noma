@@ -30,7 +30,7 @@ export default async function (id = '.', options = {}) {
   debug('options: %O', options)
 
   const dependencies = await loadPackageDependencies('.', basedir, id =>
-    /^((@noma\/plugin-[a-z0-9-]+)|(@[a-z0-9-_.]+\/noma-plugin-[a-z0-9-_.]+)|(noma-plugin-[a-z0-9-_.]+))$/.test(
+    /^((@noma\/plugin-[a-z0-9-_.]+)|(@[a-z0-9-_.]+\/noma-plugin-[a-z0-9-_.]+)|(noma-plugin-[a-z0-9-_.]+))$/.test(
       id
     )
   )

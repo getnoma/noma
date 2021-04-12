@@ -13,7 +13,9 @@ export async function loadPackageObj (packageDir) {
 }
 
 export async function loadPackageDependencies (packageName, basedir, dependencyFilter) {
-  const { nodes } = await loadPackageDependencyGraph(packageName, basedir, dependencyFilter)
+  const packageDependencyGraph = await loadPackageDependencyGraph(packageName, basedir, dependencyFilter)
+
+  const { nodes } = packageDependencyGraph
 
   nodes.pop()
 
@@ -24,22 +26,28 @@ export async function loadPackageDependencyGraph (packageName, basedir, dependen
   const packageDir = await resolvePackageDir(packageName, basedir)
   const packageObj = await loadPackageObj(packageDir)
 
-  const depdendencies = packageObj.dependencies || {}
-  const dependencyPackageNames = Object.keys(depdendencies).filter(dependencyFilter)
+  const dependencies = { ...packageObj.dependencies, ...packageObj.peerDependencies }
+  const dependencyPackageNames = Object.keys(dependencies).filter(dependencyFilter)
 
   const packageDependencyGraph = { nodes: new Set([packageName]), edges: new Set() }
 
   for (const dependencyPackageName of dependencyPackageNames) {
-    const dependencyPackageDependencyGraph = await loadPackageDependencyGraph(
-      dependencyPackageName,
-      basedir,
-      dependencyFilter
-    )
+    try {
+      const dependencyPackageDependencyGraph = await loadPackageDependencyGraph(
+        dependencyPackageName,
+        basedir,
+        dependencyFilter
+      )
 
-    packageDependencyGraph.edges.add([packageName, dependencyPackageName])
+      packageDependencyGraph.edges.add([packageName, dependencyPackageName])
 
-    dependencyPackageDependencyGraph.edges.forEach(edge => packageDependencyGraph.edges.add(edge))
-    dependencyPackageDependencyGraph.nodes.forEach(node => packageDependencyGraph.nodes.add(node))
+      dependencyPackageDependencyGraph.edges.forEach(edge => packageDependencyGraph.edges.add(edge))
+      dependencyPackageDependencyGraph.nodes.forEach(node => packageDependencyGraph.nodes.add(node))
+    } catch (err) {
+      if (!(packageObj.peerDependenciesMeta && packageObj.peerDependenciesMeta[dependencyPackageName] && packageObj.peerDependenciesMeta[dependencyPackageName].optional === true)) {
+        throw err
+      }
+    }
   }
 
   packageDependencyGraph.edges = [...packageDependencyGraph.edges]

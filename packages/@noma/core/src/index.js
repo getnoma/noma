@@ -4,7 +4,7 @@ import { getConfigDirs, loadConfig, loadConfigSchema, validateConfig } from '@no
 import { createDebug, enableDebug } from '@noma/helper-debug'
 import { loadModule } from '@noma/helper-modules'
 import { isString, mergeObjects, replaceValues } from '@noma/helper-objects'
-import { loadPackageDependencies, resolvePackageDir } from '@noma/helper-packages'
+import { loadPackageDependencies, resolvePackageDir, resolvePackageNameSync } from '@noma/helper-packages'
 import Mustache from 'mustache'
 import dotProp from 'dot-prop'
 
@@ -21,6 +21,7 @@ export default async function (id = '.', options = {}) {
 
   const basedir = getCurrentWorkingDirectory()
   const environment = getEnvironment()
+  const serviceName = resolvePackageNameSync(id, basedir)
 
   if (options.debug) {
     enableDebug()
@@ -65,6 +66,7 @@ export default async function (id = '.', options = {}) {
   }
 
   const vars = {
+    SERVICE_NAME: serviceName,
     ...process.env
   }
 
@@ -90,7 +92,7 @@ export default async function (id = '.', options = {}) {
 
   // Execute
 
-  const context = { basedir, config, debug, environment }
+  const context = { basedir, config, debug, environment, serviceName }
 
   for (const dependency of dependencies) {
     const _package = await loadModule(dependency, basedir)

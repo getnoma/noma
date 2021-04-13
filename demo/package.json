@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "1.0.0-alpha.10",
+  "version": "1.0.0-alpha.11",
   "description": "",
   "main": "./src/worker/main.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@noma/cli": "^1.0.0-alpha.6",
+    "@noma/cli": "^1.0.0-alpha.7",
     "@noma/plugin-amqplib": "^1.0.0-alpha.3",
     "@noma/plugin-express": "^1.0.0-alpha.6",
     "@noma/plugin-http": "^1.0.0-alpha.4",

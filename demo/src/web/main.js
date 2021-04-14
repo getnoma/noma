@@ -8,4 +8,8 @@ export default async function main({ config, debug, express }) {
 
     res.send('HELLO WORLD');
   });
+
+  return {
+    web: true
+  }
 }

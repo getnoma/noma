@@ -1,6 +1,6 @@
 {
   "name": "@noma/cli",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -27,7 +27,7 @@
   "type": "module",
   "private": false,
   "dependencies": {
-    "@noma/core": "^1.0.0-alpha.7",
+    "@noma/core": "^1.0.0-alpha.8",
     "commander": "^6.2.0"
   }
 }

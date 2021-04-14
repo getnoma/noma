@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "1.0.0-alpha.11",
+  "version": "1.0.0-alpha.12",
   "description": "",
   "main": "./src/worker/main.js",
   "scripts": {
@@ -12,7 +12,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@noma/cli": "^1.0.0-alpha.7",
+    "@noma/cli": "^1.0.0-alpha.8",
     "@noma/plugin-amqplib": "^1.0.0-alpha.3",
     "@noma/plugin-express": "^1.0.0-alpha.6",
     "@noma/plugin-http": "^1.0.0-alpha.4",
@@ -23,7 +23,7 @@
   "type": "module",
   "private": true,
   "devDependencies": {
-    "@noma/core": "^1.0.0-alpha.7",
+    "@noma/core": "^1.0.0-alpha.8",
     "chai": "4.3.4",
     "cross-env": "7.0.3",
     "mocha": "8.3.2"

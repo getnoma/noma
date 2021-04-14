@@ -92,24 +92,42 @@ export default async function (id = '.', options = {}) {
 
   // Execute
 
-  const context = { basedir, config, debug, environment, serviceName }
+  const baseContext = { basedir, config, debug, environment, serviceName }
+
+  const dependenciesResult = {}
 
   for (const dependency of dependencies) {
     const _package = await loadModule(dependency, basedir)
 
     const packageShortName = getPackageShortName(dependency)
 
+    const packageConfig = dotProp.get(config, packageShortName)
+
     const packageContext = {
-      ...context,
-      config: dotProp.get(config, packageShortName)
+      ...baseContext,
+      ...dependenciesResult,
+      config: packageConfig
     }
 
-    dotProp.set(context, packageShortName, await _package.default(packageContext))
+    const packageResult = await _package.default(packageContext)
+
+    dotProp.set(dependenciesResult, packageShortName, packageResult)
   }
 
   const main = await loadModule(id, basedir)
 
-  await main.default(context)
+  const mainContext = {
+    ...baseContext,
+    ...dependenciesResult
+  }
+
+  const mainResult = await main.default(mainContext)
+
+  const context = {
+    ...baseContext,
+    ...dependenciesResult,
+    ...mainResult
+  }
 
   return context
 }

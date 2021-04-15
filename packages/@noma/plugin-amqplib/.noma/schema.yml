@@ -6,12 +6,12 @@ properties:
     title: Connections
     type: object
     patternProperties:
-      '[a-z][a-zA-Z0-9]*':
+      "[a-z][a-zA-Z0-9]*":
         type: object
         properties:
           connectionString:
             title: Connection String
-            description: ''
+            description: ""
             type: string
         additionalProperties: false
     required:

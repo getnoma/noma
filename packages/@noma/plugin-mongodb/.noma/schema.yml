@@ -5,19 +5,19 @@ properties:
     title: Connections
     type: object
     patternProperties:
-      '[a-z][a-zA-Z0-9]*':
+      "[a-z][a-zA-Z0-9]*":
         type: object
         properties:
           connectionString:
             title: Connection String
-            description: ''
+            description: ""
             type: string
           collections:
             title: Collections
-            description: ''
+            description: ""
             type: object
             additionalProperties:
-              description: ''
+              description: ""
               type: object
               properties:
                 schema:
@@ -26,7 +26,7 @@ properties:
                   type: object
                 indexes:
                   title: Indexes
-                  description: ''
+                  description: ""
                   type: array
                   items:
                     type: array
@@ -34,7 +34,7 @@ properties:
                       - title: Index Specification
                         type: object
                         additionalProperties:
-                          description: ''
+                          description: ""
                           type:
                             - integer
                             - string

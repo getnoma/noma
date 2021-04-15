@@ -1,6 +1,6 @@
 https:
   servers:
     default:
-      port: "{{HTTPS_PORT}}"
-      cert: "{{HTTPS_CERT}}"
-      key: "{{HTTPS_KEY}}"
+      port: "{{{HTTPS_PORT}}}"
+      cert: "{{{HTTPS_CERT}}}"
+      key: "{{{HTTPS_KEY}}}"

@@ -1,4 +1,4 @@
 http:
   servers:
     default:
-      port: "{{PORT}}"
+      port: "{{{PORT}}}"

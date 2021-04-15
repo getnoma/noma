@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "1.0.0-alpha.12",
+  "version": "1.0.0-alpha.13",
   "description": "",
   "main": "./src/worker/main.js",
   "scripts": {
@@ -13,11 +13,11 @@
   "license": "MIT",
   "dependencies": {
     "@noma/cli": "^1.0.0-alpha.8",
-    "@noma/plugin-amqplib": "^1.0.0-alpha.3",
-    "@noma/plugin-express": "^1.0.0-alpha.6",
-    "@noma/plugin-http": "^1.0.0-alpha.4",
-    "@noma/plugin-mongodb": "^1.0.0-alpha.4",
-    "@noma/plugin-ws": "^1.0.0-alpha.5",
+    "@noma/plugin-amqplib": "^1.0.0-alpha.4",
+    "@noma/plugin-express": "^1.0.0-alpha.7",
+    "@noma/plugin-http": "^1.0.0-alpha.5",
+    "@noma/plugin-mongodb": "^1.0.0-alpha.5",
+    "@noma/plugin-ws": "^1.0.0-alpha.6",
     "concurrently": "^5.3.0"
   },
   "type": "module",

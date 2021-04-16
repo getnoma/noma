@@ -86,8 +86,6 @@ export default async function (id = '.', options = {}) {
     return newValue
   }
 
-  debug(config)
-
   validateConfig(config, configSchema)
 
   // Execute
@@ -106,7 +104,8 @@ export default async function (id = '.', options = {}) {
     const packageContext = {
       ...baseContext,
       ...dependenciesResult,
-      config: packageConfig
+      config: packageConfig,
+      debug: createDebug(packageShortName)
     }
 
     const packageResult = await _package.default(packageContext)
@@ -118,7 +117,8 @@ export default async function (id = '.', options = {}) {
 
   const mainContext = {
     ...baseContext,
-    ...dependenciesResult
+    ...dependenciesResult,
+    debug: createDebug('main')
   }
 
   const mainResult = await main.default(mainContext)

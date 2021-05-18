@@ -27,7 +27,6 @@ app.listen(port);
 ```
 
 You write code like this:
-
 ```javascript
 export function main({ express }) {
   express.app.get('/', (req, res) => {

@@ -13,12 +13,12 @@ Maybe there is a better way. Or not, time will tell. The purpose of `NOMA` is to
 `NOMA` attempts to automate dependency orchestration for dependencies such as http servers and database connections, so instead of writing code like this:
 
 ```javascript
-import express from 'express';
+import express from "express";
 
 const app = expres();
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
 const port = process.env.PORT || 8080;
@@ -27,15 +27,16 @@ app.listen(port);
 ```
 
 You write code like this:
+
 ```javascript
 export function main({ express }) {
-  express.app.get('/', (req, res) => {
-    res.send('Hello World');
+  express.app.get("/", (req, res) => {
+    res.send("Hello World");
   });
 }
 ```
 
-The express plugin for `NOMA` takes care of instantiating and starting the express application for you. The example above is only that, an example. 
+The express plugin for `NOMA` takes care of instantiating and starting the express application for you. The example above is only that, an example.
 
 `NOMA` is not a web server, or worker process, or anything in particular, it does nothing on its own, other than to orchestrate your app's dependencies through plugins. A plugin is just a function that takes dependecies as arguments and returns a value that other plugins can depend on. In essence:
 
@@ -64,7 +65,7 @@ export function({ hello }) {
 }
 ```
 
-``` bash
+```bash
 $ noma ./main.js
 
 // Hello John
@@ -74,7 +75,7 @@ $ noma ./main.js
 
 Create a hello world express app using the noma CLI and the expres plugin.
 
-``` bash
+```bash
 $ npm install @noma/cli @noma/plugin-express @noma/plugin-http
 ```
 
@@ -90,7 +91,8 @@ package.json
   },
   "scripts": {
     "start": "noma ."
-  }
+  },
+  "type": "module"
 }
 ```
 
@@ -100,10 +102,10 @@ package.json
 export default async function main({ express }) {
   const { app } = express;
 
-  app.get('/', helloWorld);
+  app.get("/", helloWorld);
 
   function helloWorld(req, res) {
-    res.send('Hello World');
+    res.send("Hello World");
   }
 }
 ```
@@ -174,7 +176,7 @@ export default function ({ numbers }) {
 
 ## License
 
-Copyright 2021 Jonatan Pedersen 
+Copyright 2021 Jonatan Pedersen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

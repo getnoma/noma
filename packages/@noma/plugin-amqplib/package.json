@@ -10,7 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "amqplib": "^0.6.0"
+    "amqplib": "^0.6.0",
+    "@types/amqplib": "^0.8.0"
   },
   "devDependencies": {
     "@noma/eslint-config-noma": "^1.0.0-alpha.1",

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "fix": "eslint --fix src test",
-    "test": "mocha test/**/*.spec.js"
+    "test": "mocha test/**/*.test.js"
   },
   "author": "",
   "license": "MIT",

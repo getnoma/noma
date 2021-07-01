@@ -1,10 +1,10 @@
 import '@noma/helper-env'
 
-import { getConfigDirs, loadConfig, loadConfigSchema, validateConfig } from '@noma/helper-config'
+import { getConfigDirs, loadConfigDir, loadConfigDirSchema, validateConfig } from '@noma/helper-config'
 import { createDebug, enableDebug } from '@noma/helper-debug'
 import { loadModule } from '@noma/helper-modules'
 import { isString, mergeObjects, replaceValues } from '@noma/helper-objects'
-import { loadPackageDependencies, resolvePackageDir, resolvePackageNameSync } from '@noma/helper-packages'
+import { loadPackages, resolvePackageNameSync } from '@noma/helper-packages'
 import Mustache from 'mustache'
 import dotProp from 'dot-prop'
 
@@ -30,11 +30,13 @@ export default async function (id = '.', options = {}) {
   debug('id: %s', id)
   debug('options: %O', options)
 
-  const dependencies = await loadPackageDependencies('.', basedir, id =>
+  const packages = await loadPackages(id, basedir, id =>
     /^((@noma\/plugin-[a-z0-9-_.]+)|(@[a-z0-9-_.]+\/noma-plugin-[a-z0-9-_.]+)|(noma-plugin-[a-z0-9-_.]+))$/.test(
       id
     )
   )
+
+  debug('packages: %O', packages);
 
   // Config
 
@@ -44,26 +46,32 @@ export default async function (id = '.', options = {}) {
     properties: {}
   }
 
-  for (const dependency of dependencies) {
-    const packageDir = await resolvePackageDir(dependency, basedir)
-    const packageConfig = await loadConfig(packageDir, environment)
-    const packageConfigSchema = await loadConfigSchema(packageDir)
-    const packageShortName = getPackageShortName(dependency)
-    const packageNamespace = packageShortName.split('.')
+  const packagesWithConfigPromises = packages.map(loadPackageConfig)
+  const packagesWithConfig = await Promise.all(packagesWithConfigPromises)
 
-    config = mergeObjects(config, packageConfig)
-    configSchema.properties[packageNamespace] = packageConfigSchema
+  async function loadPackageConfig (packageObj) {
+    let config = {}
+    let configSchema = {
+      type: 'object',
+      properties: {}
+    }
+    
+    const configDirs = getConfigDirs(packageObj.module.dir, packageObj.dir)
+
+    for (const configDir of configDirs) {
+      const dirConfig = await loadConfigDir(configDir, environment)
+      const dirConfigSchema = await loadConfigDirSchema(configDir)
+  
+      config = mergeObjects(config, dirConfig)
+      configSchema = mergeObjects(configSchema, dirConfigSchema)
+    }
+
+    return { ...packageObj, configDirs, config, configSchema }
   }
 
-  const configDirs = getConfigDirs(id)
+  debug('packagesWithConfig: %O', packagesWithConfig)
 
-  for (const configDir of configDirs) {
-    const dirConfig = await loadConfig(configDir, environment)
-    const dirConfigSchema = await loadConfigSchema(configDir)
-
-    config = mergeObjects(config, dirConfig)
-    configSchema = mergeObjects(configSchema, dirConfigSchema)
-  }
+  return;
 
   const vars = {
     SERVICE_NAME: serviceName,
@@ -148,4 +156,58 @@ function getPackageShortName (packageName) {
   debug('getPackageShortName("%s")', packageName)
 
   return packageName.replace(/^@[a-z0-9-_.]+\/(?:noma-)?plugin-([a-z0-9-_.]+)$/, '$1')
+}
+
+async function execute ({ nodes, edges }) {
+  const promises = {}
+  const executors = {}
+
+  for (const nodeId in nodes) {
+    const { promise, executor } = newPromiseAndExecutor()
+
+    promises[nodeId] = promise
+    executors[nodeId] = executor
+  }
+
+  for (const nodeId in nodes) {
+    const node = nodes[nodeId]
+    const executor = executors[nodeId]
+
+    all(Object.fromEntries(edges
+      .filter(edge => edge[0] === nodeId)
+      .map(edge => ([edge[1], promises[edge[1]]]))
+    ))
+    .then(context => node(context))
+    .then(value => executor.resolve(value))
+    .catch(error => executor.reject(error))
+  }
+
+  return all(promises)
+}
+
+async function all (promises) {
+  const keys = Object.keys(promises)
+  const values = Object.values(promises)
+
+  return Promise
+    .all(values)
+    .then(values => keys
+      .reduce((obj, key, idx) => ({
+        ...obj,
+        [key]: values[idx]
+      }), {})
+    )
+}
+
+function newPromiseAndExecutor () {
+  let executor
+
+  const promise = new Promise((resolve, reject) => {
+    executor = { resolve, reject }
+  })
+  
+  return {
+    executor,
+    promise
+  }
 }

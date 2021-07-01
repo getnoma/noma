@@ -1,15 +1,11 @@
-import { createDebug } from '@noma/helper-debug'
 import resolve from 'resolve'
 import url from 'url'
 import util from 'util'
-
-const debug = createDebug()
+import path from 'path'
 
 const resolveAsync = util.promisify(resolve)
 
 export async function loadModule (id, basedir) {
-  debug('loadModule("%s", "%s")', id, basedir)
-
   const modulePath = await resolveModule(id, basedir)
   const { href } = url.pathToFileURL(modulePath)
 
@@ -17,7 +13,31 @@ export async function loadModule (id, basedir) {
 }
 
 export async function resolveModule (id, basedir) {
-  debug('resolveModule("%s", "%s")', id, basedir)
+  let packageDir
+  let packageFile
+  let packageObj
 
-  return resolveAsync(id, { basedir })
+  const moduleFile = await resolveAsync(id, {
+    basedir,
+    packageFilter: (_packageObj, _packageFile) => {
+      packageDir = path.dirname(_packageFile)
+      packageFile = _packageFile
+      packageObj =_packageObj
+
+      return _packageObj
+    }
+  })
+
+  const moduleDir =  path.dirname(moduleFile)
+
+  return {
+    id,
+    dir: moduleDir,
+    file: moduleFile,
+    package: {
+      dir: packageDir,
+      file: packageFile,
+      obj: packageObj
+    }
+  }
 }

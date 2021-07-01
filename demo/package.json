@@ -2,7 +2,10 @@
   "name": "demo",
   "version": "1.0.0-alpha.14",
   "description": "",
-  "main": "./src/worker/main.js",
+  "exports": {
+    "./worker": "./src/worker/main.js",
+    "./web": "./src/web/main.js"
+  },
   "scripts": {
     "start": "concurrently -r \"npm:start:*\"",
     "start:web": "noma ./src/web/main.js",

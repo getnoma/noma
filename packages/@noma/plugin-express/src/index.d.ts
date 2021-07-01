@@ -1,6 +1,6 @@
 import { Express } from "express";
 
-interface ExpressNomaPluginResult {
+export interface ExpressNomaPluginResult {
   app: Express;
   apps: Record<string, Express>;
 }

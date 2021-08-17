@@ -14,7 +14,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@noma/helper-debug": "^1.0.0-alpha.4",
     "resolve": "^1.20.0",
     "toposort": "^2.0.2"
   },

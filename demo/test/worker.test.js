@@ -28,5 +28,9 @@ describe('worker', () => {
     it('should have serviceName', () => {
       expect(context).to.have.property('serviceName', 'demo')
     })
+
+    it('should have packages', () => {
+      expect(context).to.have.property('packages')
+    })
   })
 })

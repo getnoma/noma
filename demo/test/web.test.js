@@ -40,5 +40,9 @@ describe('web', () => {
     it('should have ws', () => {
       expect(context).to.have.property('ws')
     })
+
+    it('should have packages', () => {
+      expect(context).to.have.property('packages')
+    })
   })
 })

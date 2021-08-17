@@ -8,102 +8,102 @@ import path from 'path'
 const debug = createDebug()
 
 export async function loadConfigDirs (dirs, environment) {
-  const loadConfigDirPromises = dirs.map(dir => loadConfigDir(dir, environment))
-  const configDirs = await Promise.all(loadConfigDirPromises)
-  const configs = configDirs.map(({ config }) => config)
-  const configSchemas = configDirs.map(({ configSchema }) => configSchema)
-  const config = mergeObjects(...configs)
-  const configSchema = mergeObjects(...configSchemas)
+	const loadConfigDirPromises = dirs.map(dir => loadConfigDir(dir, environment))
+	const configDirs = await Promise.all(loadConfigDirPromises)
+	const configs = configDirs.map(({ config }) => config)
+	const configSchemas = configDirs.map(({ configSchema }) => configSchema)
+	const config = mergeObjects(...configs)
+	const configSchema = mergeObjects(...configSchemas)
 
-  return {
-    config,
-    configSchema
-  }
+	return {
+		config,
+		configSchema
+	}
 }
 
 export async function loadConfigDir (dir, environment) {
-  debug('loadConfig("%s", "%s")', dir, environment)
+	debug('loadConfig("%s", "%s")', dir, environment)
 
-  const configFiles = getConfigFiles(dir, environment)
-  const configs = await Promise.all(configFiles.map(loadFile))
-  const config = mergeObjects(...configs)
+	const configFiles = getConfigFiles(dir, environment)
+	const configs = await Promise.all(configFiles.map(loadFile))
+	const config = mergeObjects(...configs)
 
-  const configSchemaFiles = getConfigSchemaFiles(dir)
-  const configSchemas = await Promise.all(configSchemaFiles.map(loadFile))
-  const configSchema = mergeObjects(...configSchemas)
+	const configSchemaFiles = getConfigSchemaFiles(dir)
+	const configSchemas = await Promise.all(configSchemaFiles.map(loadFile))
+	const configSchema = mergeObjects(...configSchemas)
 
-  return { config, configSchema }
+	return { config, configSchema }
 }
 
 export function validateConfig (config, configSchema) {
-  debug('validateConfig(%O, %O)', config, configSchema)
+	debug('validateConfig(%O, %O)', config, configSchema)
 
-  var ajv = new Ajv({ $data: true, coerceTypes: true, allErrors: true, nullable: true, useDefaults: true })
-  var validate = ajv.compile(configSchema)
+	var ajv = new Ajv({ $data: true, coerceTypes: true, allErrors: true, nullable: true, useDefaults: true })
+	var validate = ajv.compile(configSchema)
 
-  if (validate(config)) {
-    return true
-  } else {
-    throw new ConfigValidationError(validate.errors)
-  }
+	if (validate(config)) {
+		return true
+	} else {
+		throw new ConfigValidationError(validate.errors)
+	}
 }
 
 async function loadFile (file) {
-  debug('loadFile: %s', file)
+	debug('loadFile: %s', file)
 
-  if (!fs.existsSync(file)) {
-    return
-  }
+	if (!fs.existsSync(file)) {
+		return
+	}
 
-  const absolutePathToConfigFile = path.resolve(file)
+	const absolutePathToConfigFile = path.resolve(file)
 
-  return jsonSchemaRefParser.dereference(absolutePathToConfigFile)
+	return jsonSchemaRefParser.dereference(absolutePathToConfigFile)
 }
 
 function getConfigFiles (dir, environment) {
-  debug('getConfigFiles("%s", "%s")', dir, environment)
+	debug('getConfigFiles("%s", "%s")', dir, environment)
 
-  const configFileNames = [
-    path.join(dir, 'default.json'),
-    path.join(dir, 'default.yml'),
-    path.join(dir, `${environment}.json`),
-    path.join(dir, `${environment}.yml`)
-  ]
+	const configFileNames = [
+		path.join(dir, 'default.json'),
+		path.join(dir, 'default.yml'),
+		path.join(dir, `${environment}.json`),
+		path.join(dir, `${environment}.yml`)
+	]
 
-  return configFileNames
+	return configFileNames
 }
 
 export function getConfigDirs (dir, basedir) {
-  debug('getConfigDirs("%s, %s")', dir, basedir)
+	debug('getConfigDirs("%s, %s")', dir, basedir)
 
-  let dirname = dir
-  const dirnames = []
+	let dirname = dir
+	const dirnames = []
 
-  while (true) {
-    dirnames.push(path.join(dirname, '.noma'))
-    dirname = path.resolve(path.join(dirname, '..'))
+	while (true) {
+		dirnames.push(path.join(dirname, '.noma'))
+		dirname = path.resolve(path.join(dirname, '..'))
 
-    if (dirname !== basedir) {
-      break
-    }
-  }
+		if (dirname !== basedir) {
+			break
+		}
+	}
 
-  return dirnames.reverse()
+	return dirnames.reverse()
 }
 
 function getConfigSchemaFiles (dir) {
-  const configSchemaFileNames = [
-    path.join(dir, 'schema.json'),
-    path.join(dir, 'schema.yml')
-  ]
+	const configSchemaFileNames = [
+		path.join(dir, 'schema.json'),
+		path.join(dir, 'schema.yml')
+	]
 
-  return configSchemaFileNames
+	return configSchemaFileNames
 }
 
 class ConfigValidationError extends Error {
-  constructor (validationErrors) {
-    super('Error validating config')
-    this.code = 'CONFIG_VALIDATION_ERROR'
-    this.validationErrors = validationErrors
-  }
+	constructor (validationErrors) {
+		super('Error validating config')
+		this.code = 'CONFIG_VALIDATION_ERROR'
+		this.validationErrors = validationErrors
+	}
 }

@@ -13,275 +13,275 @@ const DEFAULT_ENV = 'development'
 const debug = createDebug()
 
 export default async function (id = '.', options = {}) {
-  const defaultOptions = {
-    debug: false
-  }
+	const defaultOptions = {
+		debug: false
+	}
 
-  options = { ...defaultOptions, ...options }
+	options = { ...defaultOptions, ...options }
 
-  const basedir = process.cwd()
-  const environment = getEnvironment()
+	const basedir = process.cwd()
+	const environment = getEnvironment()
 
-  if (options.debug) {
-    enableDebug()
-  }
+	if (options.debug) {
+		enableDebug()
+	}
 
-  debug('id: %s', id)
-  debug('basedir: %s', basedir)
-  debug('options: %O', options)
+	debug('id: %s', id)
+	debug('basedir: %s', basedir)
+	debug('options: %O', options)
 
-  const dependencyFilter = id => /^((@noma\/plugin-[a-z0-9-_.]+)|(@[a-z0-9-_.]+\/noma-plugin-[a-z0-9-_.]+)|(noma-plugin-[a-z0-9-_.]+))$/.test(id)
+	const dependencyFilter = id => /^((@noma\/plugin-[a-z0-9-_.]+)|(@[a-z0-9-_.]+\/noma-plugin-[a-z0-9-_.]+)|(noma-plugin-[a-z0-9-_.]+))$/.test(id)
 
-  const packages = sortPackages(await loadPackages(id, basedir, dependencyFilter))
+	const packages = sortPackages(await loadPackages(id, basedir, dependencyFilter))
 
-  // Service Name
+	// Service Name
 
-  const serviceName = packages[0].name
+	const serviceName = packages[0].name
 
-  debug('serviceName: %O', serviceName)
+	debug('serviceName: %O', serviceName)
 
-  // Package Name Map
+	// Package Name Map
 
-  const packageNameMap = packages.reduce((packageNameMap, packageObj) => {
-    packageNameMap[packageObj.name] = packageObj
+	const packageNameMap = packages.reduce((packageNameMap, packageObj) => {
+		packageNameMap[packageObj.name] = packageObj
 
-    return packageNameMap
-  }, {})
+		return packageNameMap
+	}, {})
 
-  // Package Dependents
+	// Package Dependents
 
-  const packageDependents = packages.reduce((dependents, packageObj) => {
-    const packageDependencies = {
-      [packageObj.name]: packageObj.version,
-      ...packageObj.dependencies,
-      ...packageObj.peerDependencies
-    }
+	const packageDependents = packages.reduce((dependents, packageObj) => {
+		const packageDependencies = {
+			[packageObj.name]: packageObj.version,
+			...packageObj.dependencies,
+			...packageObj.peerDependencies
+		}
 
-    for (const dependencyName in packageDependencies) {
-      dependents[dependencyName] = dependents[dependencyName] || []
-      dependents[dependencyName].push(packageObj.name)
-    }
+		for (const dependencyName in packageDependencies) {
+			dependents[dependencyName] = dependents[dependencyName] || []
+			dependents[dependencyName].push(packageObj.name)
+		}
 
-    return dependents
-  }, {})
+		return dependents
+	}, {})
 
-  for (const packageObj of packages) {
-    const { name } = packageObj
+	for (const packageObj of packages) {
+		const { name } = packageObj
 
-    packageObj.dependents = packageDependents[name] || []
-  }
+		packageObj.dependents = packageDependents[name] || []
+	}
 
-  // Load Package Configs
+	// Load Package Configs
 
-  const packageConfigPromises = packages.reduce((packageConfigPromises, packageObj) => {
-    const configDirs = getConfigDirs(packageObj.module.dir, packageObj.dir)
+	const packageConfigPromises = packages.reduce((packageConfigPromises, packageObj) => {
+		const configDirs = getConfigDirs(packageObj.module.dir, packageObj.dir)
 
-    packageConfigPromises[packageObj.name] = loadConfigDirs(configDirs, environment)
+		packageConfigPromises[packageObj.name] = loadConfigDirs(configDirs, environment)
 
-    return packageConfigPromises
-  }, {})
+		return packageConfigPromises
+	}, {})
 
-  const packageConfigs = await all(packageConfigPromises)
+	const packageConfigs = await all(packageConfigPromises)
 
-  // Set Package Config Schemas
+	// Set Package Config Schemas
 
-  for (const packageObj of packages) {
-    const { name } = packageObj
+	for (const packageObj of packages) {
+		const { name } = packageObj
 
-    packageObj.configSchema = packageConfigs[name].configSchema
-  }
+		packageObj.configSchema = packageConfigs[name].configSchema
+	}
 
-  // Merge Package Configs
+	// Merge Package Configs
 
-  for (const packageObj of packages) {
-    const { namespace, dependents } = packageObj
+	for (const packageObj of packages) {
+		const { namespace, dependents } = packageObj
 
-    const configs = []
+		const configs = []
 
-    for (const dependent of dependents) {
-      const dependentConfig = packageConfigs[dependent]?.config
+		for (const dependent of dependents) {
+			const dependentConfig = packageConfigs[dependent]?.config
 
-      const config = dotProp.get(dependentConfig, namespace)
+			const config = dotProp.get(dependentConfig, namespace)
 
-      if (config !== undefined) {
-        configs.push(config)
-      }
-    }
+			if (config !== undefined) {
+				configs.push(config)
+			}
+		}
 
-    configs.reverse()
+		configs.reverse()
 
-    packageObj.config = mergeObjects(...configs)
-  }
+		packageObj.config = mergeObjects(...configs)
+	}
 
-  // Replace Package Config Variables
+	// Replace Package Config Variables
 
-  const vars = {
-    SERVICE_NAME: serviceName,
-    ...process.env
-  }
+	const vars = {
+		SERVICE_NAME: serviceName,
+		...process.env
+	}
 
-  for (const packageObj of packages) {
-    packageObj.config = replaceValues(packageObj.config, value => replaceVars(value, vars))
-  }
+	for (const packageObj of packages) {
+		packageObj.config = replaceValues(packageObj.config, value => replaceVars(value, vars))
+	}
 
-  // Validate Package Configs
+	// Validate Package Configs
 
-  for (const packageObj of packages) {
-    const { config, configSchema } = packageObj
+	for (const packageObj of packages) {
+		const { config, configSchema } = packageObj
 
-    validateConfig(config, configSchema)
-  }
+		validateConfig(config, configSchema)
+	}
 
-  // Load Package Modules
+	// Load Package Modules
 
-  const packageModulePromises = packages.reduce((packageModulePromises, packageObj) => {
-    packageModulePromises[packageObj.name] = loadModule(packageObj.module.file).then(module => module.default)
+	const packageModulePromises = packages.reduce((packageModulePromises, packageObj) => {
+		packageModulePromises[packageObj.name] = loadModule(packageObj.module.file).then(module => module.default)
 
-    return packageModulePromises
-  }, {})
+		return packageModulePromises
+	}, {})
 
-  const packageModules = await all(packageModulePromises)
+	const packageModules = await all(packageModulePromises)
 
-  debug('packageModules: %O', packageModules)
+	debug('packageModules: %O', packageModules)
 
-  for (const packageObj of packages) {
-    const { name } = packageObj
+	for (const packageObj of packages) {
+		const { name } = packageObj
 
-    packageObj.module.default = packageModules[name]
-  }
+		packageObj.module.default = packageModules[name]
+	}
 
-  debug('packages: %O', packages)
+	debug('packages: %O', packages)
 
-  // Execute
+	// Execute
 
-  const nodes = packages.reduce((nodes, packageObj) => {
-    const { name, config, module } = packageObj
+	const nodes = packages.reduce((nodes, packageObj) => {
+		const { name, config, module } = packageObj
 
-    nodes[name] = async dependencies => {
-      const packageContext = {
-        basedir,
-        config,
-        debug: createDebug(name),
-        environment,
-        serviceName
-      }
+		nodes[name] = async dependencies => {
+			const packageContext = {
+				basedir,
+				config,
+				debug: createDebug(name),
+				environment,
+				serviceName
+			}
 
-      for (const dependencyPackageName in dependencies) {
-        const dependency = dependencies[dependencyPackageName]
-        const dependencyPackage = packageNameMap[dependencyPackageName]
+			for (const dependencyPackageName in dependencies) {
+				const dependency = dependencies[dependencyPackageName]
+				const dependencyPackage = packageNameMap[dependencyPackageName]
 
-        dotProp.set(packageContext, dependencyPackage.namespace, dependency)
-      }
+				dotProp.set(packageContext, dependencyPackage.namespace, dependency)
+			}
 
-      return module.default(packageContext)
-    }
+			return module.default(packageContext)
+		}
 
-    return nodes
-  }, {})
+		return nodes
+	}, {})
 
-  const edges = packages.reduce((edges, packageObj) => {
-    const { name, dependents } = packageObj
+	const edges = packages.reduce((edges, packageObj) => {
+		const { name, dependents } = packageObj
 
-    for (const dependent of dependents) {
-      if (dependent !== name) {
-        edges.push([dependent, name])
-      }
-    }
+		for (const dependent of dependents) {
+			if (dependent !== name) {
+				edges.push([dependent, name])
+			}
+		}
 
-    return edges
-  }, [])
+		return edges
+	}, [])
 
-  const dependencies = await execute({ nodes, edges })
+	const dependencies = await execute({ nodes, edges })
 
-  const context = {
-    basedir,
-    environment,
-    packages,
-    serviceName
-  }
+	const context = {
+		basedir,
+		environment,
+		packages,
+		serviceName
+	}
 
-  for (const dependencyPackageName in dependencies) {
-    const dependency = dependencies[dependencyPackageName]
-    const dependencyPackage = packageNameMap[dependencyPackageName]
+	for (const dependencyPackageName in dependencies) {
+		const dependency = dependencies[dependencyPackageName]
+		const dependencyPackage = packageNameMap[dependencyPackageName]
 
-    dotProp.set(context, dependencyPackage.namespace, dependency)
-  }
+		dotProp.set(context, dependencyPackage.namespace, dependency)
+	}
 
-  debug('context: %O', Object.keys(context))
+	debug('context: %O', Object.keys(context))
 
-  return context
+	return context
 }
 
 function getEnvironment () {
-  debug('getEnvironment()')
+	debug('getEnvironment()')
 
-  return process.env.APP_ENV || process.env.NODE_ENV || DEFAULT_ENV
+	return process.env.APP_ENV || process.env.NODE_ENV || DEFAULT_ENV
 }
 
 async function execute ({ nodes, edges }) {
-  const promises = {}
-  const executors = {}
+	const promises = {}
+	const executors = {}
 
-  for (const nodeId in nodes) {
-    const { promise, executor } = newPromiseAndExecutor()
+	for (const nodeId in nodes) {
+		const { promise, executor } = newPromiseAndExecutor()
 
-    promises[nodeId] = promise
-    executors[nodeId] = executor
-  }
+		promises[nodeId] = promise
+		executors[nodeId] = executor
+	}
 
-  for (const nodeId in nodes) {
-    const node = nodes[nodeId]
-    const executor = executors[nodeId]
+	for (const nodeId in nodes) {
+		const node = nodes[nodeId]
+		const executor = executors[nodeId]
 
-    all(Object.fromEntries(edges
-      .filter(edge => edge[0] === nodeId)
-      .map(edge => ([edge[1], promises[edge[1]]]))
-    ))
-      .then(context => node(context))
-      .then(value => executor.resolve(value))
-      .catch(error => executor.reject(error))
-  }
+		all(Object.fromEntries(edges
+			.filter(edge => edge[0] === nodeId)
+			.map(edge => ([edge[1], promises[edge[1]]]))
+		))
+			.then(context => node(context))
+			.then(value => executor.resolve(value))
+			.catch(error => executor.reject(error))
+	}
 
-  return all(promises)
+	return all(promises)
 }
 
 async function all (promises) {
-  const keys = Object.keys(promises)
-  const values = Object.values(promises)
+	const keys = Object.keys(promises)
+	const values = Object.values(promises)
 
-  return Promise
-    .all(values)
-    .then(values => keys
-      .reduce((obj, key, idx) => ({
-        ...obj,
-        [key]: values[idx]
-      }), {})
-    )
+	return Promise
+		.all(values)
+		.then(values => keys
+			.reduce((obj, key, idx) => ({
+				...obj,
+				[key]: values[idx]
+			}), {})
+		)
 }
 
 function newPromiseAndExecutor () {
-  let executor
+	let executor
 
-  const promise = new Promise((resolve, reject) => {
-    executor = { resolve, reject }
-  })
+	const promise = new Promise((resolve, reject) => {
+		executor = { resolve, reject }
+	})
 
-  return {
-    executor,
-    promise
-  }
+	return {
+		executor,
+		promise
+	}
 }
 
 function replaceVars (value, vars) {
-  if (!isString(value)) {
-    return value
-  }
+	if (!isString(value)) {
+		return value
+	}
 
-  const newValue = Mustache.render(value, vars)
+	const newValue = Mustache.render(value, vars)
 
-  if (newValue === '') {
-    return undefined
-  }
+	if (newValue === '') {
+		return undefined
+	}
 
-  return newValue
+	return newValue
 }

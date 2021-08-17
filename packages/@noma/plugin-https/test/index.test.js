@@ -1,15 +1,15 @@
 import nomaPluginHttps from '../src/index.js'
 
 describe('express', () => {
-  let https
+	let https
 
-  before('https', async () => {
-    https = await nomaPluginHttps({
-      config: {
-        servers: {
-          default: {
-            port: 44301,
-            cert: `-----BEGIN CERTIFICATE-----
+	before('https', async () => {
+		https = await nomaPluginHttps({
+			config: {
+				servers: {
+					default: {
+						port: 44301,
+						cert: `-----BEGIN CERTIFICATE-----
 MIICNDCCAZ0CFGUw/BCL8bkMmk+KlekQKdfHS6OjMA0GCSqGSIb3DQEBCwUAMFkx
 CzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRl
 cm5ldCBXaWRnaXRzIFB0eSBMdGQxEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTAz
@@ -24,7 +24,7 @@ UJ2osWNRuhoA0o7PjGOvG29OzywHL71QObEXused3R2f5pH/LEm6XqWUDN0F/h5S
 I6SxPqQcsoarSxJYES+gGr/F8sK7u7uEUm724YmzgFOl3Q6efxph3g==
 -----END CERTIFICATE-----
 `,
-            key: `-----BEGIN RSA PRIVATE KEY-----
+						key: `-----BEGIN RSA PRIVATE KEY-----
 MIICXQIBAAKBgQCsrG0IihXAF9DPT84o1wMqIkvgt+/6vbTvRukOvd2B6gyVx5u9
 T77d7mrN37+m7J3RskVFVzoTTEKrh9an1WBDRGCqLy3s0GPlSH0kCNRulp/pqimW
 G29JHtph+FiNJsj1Iw5GmFbsHhg8cEzKedi++Lei++ATiKhmontrB7Bc0QIDAQAB
@@ -39,23 +39,23 @@ fuYj4HjeMPp+q3UZ1U2GOb4dTmB/c5JiLZshcOeEp6eaGViWJ+lqS1dWl78CQQCV
 2O6nBSTbZ0EJcBNSCgCdAkAOihtt9pNR2siFlNhsRcRbFeGWQIFdLzDtWfyPSdOp
 ppPdC1A3rPrjThOU9cYvBPAxOPSsvdQN2zA2HWWRCfNo
 -----END RSA PRIVATE KEY-----`
-          }
-        }
-      }
-    })
-  })
+					}
+				}
+			}
+		})
+	})
 
-  describe('server', () => {
-    it('should run on port 44301', () => {
-      expect(https.server).to.have.property('port', 44301)
-    })
-  })
+	describe('server', () => {
+		it('should run on port 44301', () => {
+			expect(https.server).to.have.property('port', 44301)
+		})
+	})
 
-  describe('servers', () => {
-    describe('default', () => {
-      it('should run on port 44301', () => {
-        expect(https.servers.default).to.have.property('port', 44301)
-      })
-    })
-  })
+	describe('servers', () => {
+		describe('default', () => {
+			it('should run on port 44301', () => {
+				expect(https.servers.default).to.have.property('port', 44301)
+			})
+		})
+	})
 })

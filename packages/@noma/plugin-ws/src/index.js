@@ -1,18 +1,18 @@
 import WebSocket from 'ws'
 
 export default async function ({ config, http }) {
-  if (!config) {
-    return
-  }
+	if (!config) {
+		return
+	}
 
-  const servers = {}
+	const servers = {}
 
-  for (const serverName in config.servers) {
-    const serverConfig = config.servers[serverName]
-    const httpServer = http.servers[serverConfig.httpServer]
+	for (const serverName in config.servers) {
+		const serverConfig = config.servers[serverName]
+		const httpServer = http.servers[serverConfig.httpServer]
 
-    servers[serverName] = new WebSocket.Server({ server: httpServer })
-  }
+		servers[serverName] = new WebSocket.Server({ server: httpServer })
+	}
 
-  return { server: servers.default, servers }
+	return { server: servers.default, servers }
 }

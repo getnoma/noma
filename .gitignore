@@ -1,1 +1,2 @@
 node_modules
+!packages/@noma/helper-modules/test/node_modules

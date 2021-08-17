@@ -36,7 +36,7 @@ export async function resolveModule (id, basedir) {
       if (!pkg.exports) {
         return relativePath
       }
-  
+
       return pkg.exports['./' + relativePath]
     }
   })

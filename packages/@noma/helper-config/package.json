@@ -1,6 +1,6 @@
 {
   "name": "@noma/helper-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -24,8 +24,8 @@
     "mocha-eslint": "7.0.0"
   },
   "dependencies": {
-    "@noma/helper-debug": "^1.0.1",
-    "@noma/helper-objects": "^1.0.1",
+    "@noma/helper-debug": "^1.0.2",
+    "@noma/helper-objects": "^1.0.2",
     "ajv": "^6.12.6",
     "json-schema-ref-parser": "^9.0.6",
     "resolve": "^1.18.1"

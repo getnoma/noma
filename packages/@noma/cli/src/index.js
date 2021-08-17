@@ -4,23 +4,23 @@ import commander from 'commander'
 const { Command } = commander
 
 async function main () {
-  const program = new Command()
+	const program = new Command()
 
-  program
-    .version('1.0.0')
-    .arguments('<id>', '.')
-    .option('-c, --config <config>', 'config file to load')
-    .option('-d, --debug', 'output debugging information', false)
+	program
+		.version('1.0.0')
+		.arguments('<id>', '.')
+		.option('-c, --config <config>', 'config file to load')
+		.option('-d, --debug', 'output debugging information', false)
 
-    .action(async (id, { debug }) => {
-      try {
-        await core(id, { debug })
-      } catch (err) {
-        console.error(err)
-      }
-    })
+		.action(async (id, { debug }) => {
+			try {
+				await core(id, { debug })
+			} catch (err) {
+				console.error(err)
+			}
+		})
 
-  await program.parseAsync(process.argv)
+	await program.parseAsync(process.argv)
 }
 
 main()

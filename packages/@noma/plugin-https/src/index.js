@@ -1,29 +1,29 @@
 import https from 'https'
 
 export default async function ({ config }) {
-  if (!config) {
-    return
-  }
+	if (!config) {
+		return
+	}
 
-  const servers = {}
+	const servers = {}
 
-  for (const serverId in config.servers) {
-    const serverConfig = config.servers[serverId]
+	for (const serverId in config.servers) {
+		const serverConfig = config.servers[serverId]
 
-    servers[serverId] = createServer(serverConfig)
-  }
+		servers[serverId] = createServer(serverConfig)
+	}
 
-  return { server: servers.default, servers }
+	return { server: servers.default, servers }
 }
 
 function createServer ({ port, cert, key }) {
-  const server = https.createServer({ cert, key })
+	const server = https.createServer({ cert, key })
 
-  server.port = port
+	server.port = port
 
-  server.listen(port, () => {
-    console.info(`Listening on https://localhost:${port}`)
-  })
+	server.listen(port, () => {
+		console.info(`Listening on https://localhost:${port}`)
+	})
 
-  return server
+	return server
 }

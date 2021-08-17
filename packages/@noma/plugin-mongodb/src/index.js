@@ -3,68 +3,68 @@ import mongodb from 'mongodb'
 const { MongoClient } = mongodb
 
 export default async function ({ config }) {
-  if (!config) {
-    return
-  }
+	if (!config) {
+		return
+	}
 
-  let mongodb = {
-    connections: {}
-  }
+	let mongodb = {
+		connections: {}
+	}
 
-  const { connections } = config
+	const { connections } = config
 
-  if (connections) {
-    for (const connection in connections) {
-      const { connectionString, collections } = connections[connection]
+	if (connections) {
+		for (const connection in connections) {
+			const { connectionString, collections } = connections[connection]
 
-      const client = await MongoClient.connect(connectionString, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      })
+			const client = await MongoClient.connect(connectionString, {
+				useNewUrlParser: true,
+				useUnifiedTopology: true
+			})
 
-      const db = client.db()
+			const db = client.db()
 
-      if (collections) {
-        for (const collection in collections) {
-          const { indexes, schema } = collections[collection]
+			if (collections) {
+				for (const collection in collections) {
+					const { indexes, schema } = collections[collection]
 
-          for (const index of indexes || []) {
-            const fields = index[0]
-            const options = { ...(index[1] || {}), background: true }
+					for (const index of indexes || []) {
+						const fields = index[0]
+						const options = { ...(index[1] || {}), background: true }
 
-            await db.collection(collection).createIndex(fields, options)
-          }
+						await db.collection(collection).createIndex(fields, options)
+					}
 
-          if (schema) {
-            await db.command({
-              collMod: collection,
-              validator: {
-                $jsonSchema: schema
-              },
-              validationLevel: 'strict'
-            })
-          }
-        }
-      }
+					if (schema) {
+						await db.command({
+							collMod: collection,
+							validator: {
+								$jsonSchema: schema
+							},
+							validationLevel: 'strict'
+						})
+					}
+				}
+			}
 
-      mongodb = {
-        ...mongodb,
-        connections: {
-          ...mongodb.connections,
-          [connection]: { client, collections, connectionString, db }
-        }
-      }
-    }
-  }
+			mongodb = {
+				...mongodb,
+				connections: {
+					...mongodb.connections,
+					[connection]: { client, collections, connectionString, db }
+				}
+			}
+		}
+	}
 
-  const defaultConnection = mongodb.connections && mongodb.connections.default
+	const defaultConnection = mongodb.connections && mongodb.connections.default
 
-  if (defaultConnection) {
-    mongodb = {
-      ...mongodb,
-      ...defaultConnection
-    }
-  }
+	if (defaultConnection) {
+		mongodb = {
+			...mongodb,
+			...defaultConnection
+		}
+	}
 
-  return mongodb
+	return mongodb
 }

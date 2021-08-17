@@ -3,104 +3,104 @@ import { createDebug } from '@noma/helper-debug'
 const debug = createDebug()
 
 export function replaceValues (value, replacer) {
-  debug('replaceValues(%O, %O)', value, replacer)
+	debug('replaceValues(%O, %O)', value, replacer)
 
-  if (isString(value) || isNumber(value) || isBoolean(value) || isDate(value)) {
-    return replacer(value)
-  }
+	if (isString(value) || isNumber(value) || isBoolean(value) || isDate(value)) {
+		return replacer(value)
+	}
 
-  if (isObject(value)) {
-    for (const prop in value) {
-      const newValue = replaceValues(value[prop], replacer)
+	if (isObject(value)) {
+		for (const prop in value) {
+			const newValue = replaceValues(value[prop], replacer)
 
-      if (newValue === undefined) {
-        delete value[prop]
-      } else {
-        value[prop] = newValue
-      }
-    }
-  } else if (isArray(value)) {
-    for (const prop of value) {
-      const newValue = replaceValues(value[prop], replacer)
+			if (newValue === undefined) {
+				delete value[prop]
+			} else {
+				value[prop] = newValue
+			}
+		}
+	} else if (isArray(value)) {
+		for (const prop of value) {
+			const newValue = replaceValues(value[prop], replacer)
 
-      if (newValue === undefined) {
-        delete value[prop]
-      } else {
-        value[prop] = newValue
-      }
-    }
-  }
+			if (newValue === undefined) {
+				delete value[prop]
+			} else {
+				value[prop] = newValue
+			}
+		}
+	}
 
-  return value
+	return value
 }
 
 export function interpolateString (str, vars) {
-  debug('interpolateString("%s", %O)', str, vars)
+	debug('interpolateString("%s", %O)', str, vars)
 
-  return Object.keys(vars).reduce((str, key) => {
-    const value = vars[key]
-    const regex = new RegExp(`\\\${env\\.${key}}`, 'gm')
+	return Object.keys(vars).reduce((str, key) => {
+		const value = vars[key]
+		const regex = new RegExp(`\\\${env\\.${key}}`, 'gm')
 
-    return str.replace(regex, value)
-  }, str)
+		return str.replace(regex, value)
+	}, str)
 }
 
 export function isObject (value) {
-  debug('isObject(%O)', value)
+	debug('isObject(%O)', value)
 
-  return typeof value === 'object' && value !== null
+	return typeof value === 'object' && value !== null
 }
 
 export function isArray (value) {
-  debug('isArray(%O)', value)
+	debug('isArray(%O)', value)
 
-  return Array.isArray(value)
+	return Array.isArray(value)
 }
 
 export function isNumber (value) {
-  debug('isNumber(%O)', value)
+	debug('isNumber(%O)', value)
 
-  return typeof value === 'number'
+	return typeof value === 'number'
 }
 
 export function isString (value) {
-  debug('isString(%O)', value)
+	debug('isString(%O)', value)
 
-  return typeof value === 'string'
+	return typeof value === 'string'
 }
 
 export function isBoolean (value) {
-  debug('isBoolean(%O)', value)
+	debug('isBoolean(%O)', value)
 
-  return typeof value === 'boolean'
+	return typeof value === 'boolean'
 }
 
 export function isDate (value) {
-  debug('isDate(%O)', value)
+	debug('isDate(%O)', value)
 
-  return value instanceof Date
+	return value instanceof Date
 }
 
 export function mergeObjects (...objects) {
-  debug('mergeObjects(%O)', objects)
+	debug('mergeObjects(%O)', objects)
 
-  return objects.reduce((target, source) => {
-    const output = Object.assign({}, target)
+	return objects.reduce((target, source) => {
+		const output = Object.assign({}, target)
 
-    if (isObject(target) && isObject(source)) {
-      Object.keys(source).forEach(key => {
-        if (isObject(source[key])) {
-          if (!(key in target)) {
-            Object.assign(output, { [key]: source[key] })
-          } else {
-            output[key] = mergeObjects(target[key], source[key])
-          }
-        } else {
-          Object.assign(output, { [key]: source[key] })
-        }
-      })
-    }
+		if (isObject(target) && isObject(source)) {
+			Object.keys(source).forEach(key => {
+				if (isObject(source[key])) {
+					if (!(key in target)) {
+						Object.assign(output, { [key]: source[key] })
+					} else {
+						output[key] = mergeObjects(target[key], source[key])
+					}
+				} else {
+					Object.assign(output, { [key]: source[key] })
+				}
+			})
+		}
 
-    return output
-  }, {})
+		return output
+	}, {})
 }

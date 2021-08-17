@@ -9,7 +9,7 @@
     "lerna:clean": "lerna clean",
     "lerna:fix": "lerna run fix",
     "lerna:publish": "lerna publish",
-    "postinstall": "npm run bootstrap",
+    "postinstall": "npm run lerna:bootstrap",
     "start:demo": "lerna exec npm start --scope demo",
     "start": "lerna run start --parallel",
     "test": "lerna run test"

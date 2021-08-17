@@ -4,11 +4,12 @@
   "description": "@noma",
   "main": "index.js",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean",
-    "fix": "lerna run fix",
-    "postinstall": "npm run bootstrap",
-    "publish": "lerna publish",
+    "lerna:bootstrap": "lerna bootstrap",
+    "lerna:changed": "lerna changed",
+    "lerna:clean": "lerna clean",
+    "lerna:fix": "lerna run fix",
+    "lerna:publish": "lerna publish",
+    "postinstall": "npm run lerna:bootstrap",
     "start:demo": "lerna exec npm start --scope demo",
     "start": "lerna run start --parallel",
     "test": "lerna run test"
@@ -26,6 +27,6 @@
   "type": "module",
   "private": false,
   "devDependencies": {
-    "lerna": "3.22.1"
+    "lerna": "4.0.0"
   }
 }

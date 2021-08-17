@@ -1,5 +1,9 @@
-http: null
-express: null
-ws: null
-worker:
-  message: 'Hello, I am worker'
+http:
+  servers: null
+express: 
+  apps: null
+ws:
+  servers: null
+demo:
+  worker:
+    message: 'Hello, I am worker'

@@ -5,7 +5,7 @@ describe('worker', () => {
   let context
 
   before('init', async () => {
-    context = await noma('./src/worker/main.js')
+    context = await noma('demo/worker')
   })
 
   describe('context', () => {
@@ -15,14 +15,6 @@ describe('worker', () => {
 
     it('should have basedir', () => {
       expect(context).to.have.property('basedir', process.cwd())
-    })
-
-    it('should have config', () => {
-      expect(context).to.have.property('config')
-    })
-
-    it('should have debug', () => {
-      expect(context).to.have.property('debug')
     })
 
     it('should have environment', () => {
@@ -36,9 +28,9 @@ describe('worker', () => {
     it('should have serviceName', () => {
       expect(context).to.have.property('serviceName', 'demo')
     })
-    
-    it('should have worker', () => {
-      expect(context).to.have.property('worker', true)
+
+    it('should have packages', () => {
+      expect(context).to.have.property('packages')
     })
   })
 })

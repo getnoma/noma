@@ -1,4 +1,4 @@
-import lib from '@noma/core'
+import core from '@noma/core'
 import commander from 'commander'
 
 const { Command } = commander
@@ -14,7 +14,7 @@ async function main () {
 
     .action(async (id, { debug }) => {
       try {
-        await lib(id, { debug })
+        await core(id, { debug })
       } catch (err) {
         console.error(err)
       }

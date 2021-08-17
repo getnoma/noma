@@ -2,11 +2,14 @@
   "name": "demo",
   "version": "1.0.0-alpha.15",
   "description": "",
-  "main": "./src/worker/main.js",
+  "exports": {
+    "./web": "./src/web/main.js",
+    "./worker": "./src/worker/main.js"
+  },
   "scripts": {
     "start": "concurrently -r \"npm:start:*\"",
-    "start:web": "noma ./src/web/main.js",
-    "start:worker": "noma ./src/worker/main.js",
+    "start:web": "noma demo/web",
+    "start:worker": "noma demo/worker",
     "test": "cross-env NODE_ENV=test mocha"
   },
   "author": "",

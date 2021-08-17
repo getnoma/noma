@@ -7,27 +7,32 @@ import path from 'path'
 
 const debug = createDebug()
 
-export async function loadConfig (dir, environment) {
+export async function loadConfigDirs (dirs, environment) {
+  const loadConfigDirPromises = dirs.map(dir => loadConfigDir(dir, environment))
+  const configDirs = await Promise.all(loadConfigDirPromises)
+  const configs = configDirs.map(({ config }) => config)
+  const configSchemas = configDirs.map(({ configSchema }) => configSchema)
+  const config = mergeObjects(...configs)
+  const configSchema = mergeObjects(...configSchemas)
+
+  return {
+    config,
+    configSchema
+  }
+}
+
+export async function loadConfigDir (dir, environment) {
   debug('loadConfig("%s", "%s")', dir, environment)
 
   const configFiles = getConfigFiles(dir, environment)
   const configs = await Promise.all(configFiles.map(loadFile))
   const config = mergeObjects(...configs)
 
-  debug('loadConfig:configFiles %O', configFiles)
-  debug('loadConfig:configs %O', configs)
-
-  return config
-}
-
-export async function loadConfigSchema (dir) {
-  debug('loadConfigSchema("%s", "%s")', dir)
-
   const configSchemaFiles = getConfigSchemaFiles(dir)
   const configSchemas = await Promise.all(configSchemaFiles.map(loadFile))
   const configSchema = mergeObjects(...configSchemas)
 
-  return configSchema
+  return { config, configSchema }
 }
 
 export function validateConfig (config, configSchema) {
@@ -59,35 +64,37 @@ function getConfigFiles (dir, environment) {
   debug('getConfigFiles("%s", "%s")', dir, environment)
 
   const configFileNames = [
-    path.join(dir, '.noma', 'default.json'),
-    path.join(dir, '.noma', 'default.yml'),
-    path.join(dir, '.noma', `${environment}.json`),
-    path.join(dir, '.noma', `${environment}.yml`)
+    path.join(dir, 'default.json'),
+    path.join(dir, 'default.yml'),
+    path.join(dir, `${environment}.json`),
+    path.join(dir, `${environment}.yml`)
   ]
 
   return configFileNames
 }
 
-export function getConfigDirs (file) {
-  debug('getConfigDirs("%s")', file)
+export function getConfigDirs (dir, basedir) {
+  debug('getConfigDirs("%s, %s")', dir, basedir)
 
-  let dirname = path.dirname(file)
+  let dirname = dir
   const dirnames = []
 
-  while (dirname !== '..') {
-    dirnames.push(path.resolve(dirname))
-    dirname = path.join(dirname, '..')
+  while (true) {
+    dirnames.push(path.join(dirname, '.noma'))
+    dirname = path.resolve(path.join(dirname, '..'))
+
+    if (dirname !== basedir) {
+      break
+    }
   }
 
   return dirnames.reverse()
 }
 
 function getConfigSchemaFiles (dir) {
-  const configDir = path.join(dir, '.noma')
-
   const configSchemaFileNames = [
-    path.join(configDir, 'schema.json'),
-    path.join(configDir, 'schema.yml')
+    path.join(dir, 'schema.json'),
+    path.join(dir, 'schema.yml')
   ]
 
   return configSchemaFileNames

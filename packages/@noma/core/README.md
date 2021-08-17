@@ -6,10 +6,10 @@
 $ npm install @noma/core
 ```
 
-^## Usage
+## Usage
 
 ```javascript
-import lib '@noma/core';
+import core '@noma/core';
 
 const id = './src/main.js';
 
@@ -17,7 +17,7 @@ const options = {
   debug: true, // false
 };
 
-const context = await lib(id, options);
+const context = await core(id, options);
 ```
 
 ## License

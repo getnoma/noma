@@ -1,6 +1,5 @@
 title: Express Plugin Configuration
 type: object
-nullable: true
 properties:
   apps:
     title: Apps
@@ -15,3 +14,5 @@ properties:
           items:
             title: HTTP(S) Server ID
             type: string
+    nullable: true
+additionalProperties: false

@@ -1,5 +1,4 @@
 title: AMQP Plugin Configuration
-nullable: true
 type: object
 properties:
   connections:
@@ -16,4 +15,5 @@ properties:
         additionalProperties: false
     required:
       - default
+    nullable: true
 additionalProperties: false

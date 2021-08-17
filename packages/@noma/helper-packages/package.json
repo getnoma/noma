@@ -11,7 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "@noma/helper-json": "^1.0.0-alpha.2",
-    "resolve": "^1.19.0",
+    "@noma/helper-modules": "^1.0.0-alpha.4",
+    "resolve": "^1.20.0",
     "toposort": "^2.0.2"
   },
   "devDependencies": {

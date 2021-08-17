@@ -1,6 +1,5 @@
-export default async function main({ config, debug }) {
-  debug(config.worker.message);
-  debug('config: %O', config);
+export default async function main({ config }) {
+  console.info(config.worker.message)
 
   return {
     worker: true

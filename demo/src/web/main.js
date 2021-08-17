@@ -1,5 +1,5 @@
 export default async function main({ config, debug, express }) {
-  debug(config.web.message);
+  console.info(config.web.message)
 
   const { app } = express;
 

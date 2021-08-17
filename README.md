@@ -90,7 +90,8 @@ package.json
   },
   "scripts": {
     "start": "noma ."
-  }
+  },
+  "type": "module"
 }
 ```
 

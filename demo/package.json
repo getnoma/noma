@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-alpha.15",
   "description": "",
   "exports": {
     "./web": "./src/web/main.js",
@@ -16,8 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "@noma/cli": "^1.0.0-alpha.9",
-    "@noma/plugin-amqplib": "^1.0.0-alpha.4",
-    "@noma/plugin-express": "^1.0.0-alpha.7",
+    "@noma/plugin-amqplib": "^1.0.0-alpha.5",
+    "@noma/plugin-express": "^1.0.0-alpha.8",
     "@noma/plugin-http": "^1.0.0-alpha.5",
     "@noma/plugin-mongodb": "^1.0.0-alpha.5",
     "@noma/plugin-ws": "^1.0.0-alpha.6",

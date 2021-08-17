@@ -28,7 +28,7 @@ describe('@noma/helper-modules', () => {
       })
     })
 
-    describe.only('when resolving module using package name and export name', () => {
+    describe('when resolving module using package name and export name', () => {
       let module
 
       before(async () => {

@@ -2,21 +2,14 @@ title: HTTPS Plugin Confiugration
 type: object
 properties:
   servers:
-    title: HTTPS Servers
+    title: WS Servers
     type: object
     additionalProperties:
       title: HTTPS Server Configuration
       type: object
       properties:
-        port:
-          title: Port
-          type: number
-          default: 44378
-        key:
-          title: Key
-          type: string
-        cert:
-          title: Certificate
+        httpServer:
+          title: HTTP Server
           type: string
     nullable: true
 additionalProperties: false

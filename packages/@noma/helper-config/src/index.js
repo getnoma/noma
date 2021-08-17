@@ -7,6 +7,20 @@ import path from 'path'
 
 const debug = createDebug()
 
+export async function loadConfigDirs (dirs, environment) {
+  const loadConfigDirPromises = dirs.map(dir => loadConfigDir(dir, environment))
+  const configDirs = await Promise.all(loadConfigDirPromises)
+  const configs = configDirs.map(({ config }) => config)
+  const configSchemas = configDirs.map(({ configSchema }) => configSchema)
+  const config = mergeObjects(...configs)
+  const configSchema = mergeObjects(...configSchemas)
+
+  return {
+    config,
+    configSchema
+  }
+}
+
 export async function loadConfigDir (dir, environment) {
   debug('loadConfig("%s", "%s")', dir, environment)
 
@@ -14,20 +28,11 @@ export async function loadConfigDir (dir, environment) {
   const configs = await Promise.all(configFiles.map(loadFile))
   const config = mergeObjects(...configs)
 
-  debug('loadConfig:configFiles %O', configFiles)
-  debug('loadConfig:configs %O', configs)
-
-  return config
-}
-
-export async function loadConfigDirSchema (dir) {
-  debug('loadConfigSchema("%s", "%s")', dir)
-
   const configSchemaFiles = getConfigSchemaFiles(dir)
   const configSchemas = await Promise.all(configSchemaFiles.map(loadFile))
   const configSchema = mergeObjects(...configSchemas)
 
-  return configSchema
+  return { config, configSchema }
 }
 
 export function validateConfig (config, configSchema) {
@@ -79,7 +84,7 @@ export function getConfigDirs (dir, basedir) {
     dirname = path.resolve(path.join(dirname, '..'))
 
     if (dirname !== basedir) {
-      break;
+      break
     }
   }
 
@@ -87,11 +92,9 @@ export function getConfigDirs (dir, basedir) {
 }
 
 function getConfigSchemaFiles (dir) {
-  const configDir = path.join(dir, '.noma')
-
   const configSchemaFileNames = [
-    path.join(configDir, 'schema.json'),
-    path.join(configDir, 'schema.yml')
+    path.join(dir, 'schema.json'),
+    path.join(dir, 'schema.yml')
   ]
 
   return configSchemaFileNames

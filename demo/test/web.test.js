@@ -5,7 +5,7 @@ describe('web', () => {
   let context
 
   before('init', async () => {
-    context = await noma('./src/web/main.js')
+    context = await noma('demo/web')
   })
 
   describe('context', () => {
@@ -15,14 +15,6 @@ describe('web', () => {
 
     it('should have basedir', () => {
       expect(context).to.have.property('basedir', process.cwd())
-    })
-
-    it('should have config', () => {
-      expect(context).to.have.property('config')
-    })
-
-    it('should have debug', () => {
-      expect(context).to.have.property('debug')
     })
 
     it('should have environment', () => {
@@ -43,10 +35,6 @@ describe('web', () => {
 
     it('should have serviceName', () => {
       expect(context).to.have.property('serviceName', 'demo')
-    })
-    
-    it('should have web', () => {
-      expect(context).to.have.property('web', true)
     })
 
     it('should have ws', () => {

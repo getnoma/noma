@@ -1,6 +1,5 @@
 title: HTTP Plugin Confiugration
 type: object
-nullable: true
 properties:
   servers:
     title: HTTP Servers
@@ -13,3 +12,5 @@ properties:
           title: Port
           type: number
           default: 8078
+    nullable: true
+additionalProperties: false

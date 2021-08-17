@@ -1,2 +1,3 @@
-web:
-  message: 'Hello, I am web'
+demo:
+  web:
+    message: 'Hello, I am web'

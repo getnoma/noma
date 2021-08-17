@@ -1,9 +1,9 @@
-import { loadConfig } from '../src/index.js'
+import { loadConfigDir } from '../src/index.js'
 
 describe('@noma/helper-config', () => {
-  describe('loadConfig', () => {
-    before('load config', async () => {
-      await loadConfig('./', 'test')
+  describe('loadConfigDir', () => {
+    before('load config dir', async () => {
+      await loadConfigDir('./', 'test')
     })
   })
 })

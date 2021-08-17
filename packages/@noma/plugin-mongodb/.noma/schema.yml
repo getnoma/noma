@@ -4,6 +4,7 @@ properties:
   connections:
     title: Connections
     type: object
+    nullable: true
     patternProperties:
       "[a-z][a-zA-Z0-9]*":
         type: object

@@ -5,7 +5,7 @@ export interface NomaOptions {
 }
 
 export interface NomaContext {
-  debug: Function
+  basedir: String
   environment: String
   serviceName: String
 }

@@ -106,5 +106,5 @@ function filterObject (object, filter) {
 function getPackageNamespaceFromPackageName (packageName) {
   return packageName
     .replace(/^@[a-z0-9-_.]+\/(?:noma-)?plugin-([a-z0-9-_.]+)$/, '$1')
-    .replace(/_/g, '.')
+    .replace(/-/g, '.')
 }

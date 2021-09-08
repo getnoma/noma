@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@noma/plugin-http": "^1.0.0",
-    "ws": "8.2.1"
+    "ws": "^8.2.1"
   },
   "type": "module",
   "private": false,

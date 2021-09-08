@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "lerna:bootstrap": "lerna bootstrap",
-    "lerna:changed": "lerna changed",
+    "lerna:update": "lerna bootstrap",
+    "ncu": "lerna exec \"ncu -u\"",
     "lerna:clean": "lerna clean",
     "fix": "lerna run fix",
     "lerna:publish": "lerna publish",

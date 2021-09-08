@@ -9,7 +9,7 @@
 		"@noma/eslint-config-noma": "^1.0.0"
 	},
 	"devDependencies": {
-		"chai": "4.2.0",
-		"mocha": "8.1.3"
+		"chai": "4.3.4",
+		"mocha": "9.1.1"
 	}
 }

@@ -1,4 +1,4 @@
-import WebSocket from 'ws'
+import { WebSocketServer } from 'ws'
 
 export default async function ({ config, http }) {
 	if (!config) {
@@ -11,7 +11,7 @@ export default async function ({ config, http }) {
 		const serverConfig = config.servers[serverName]
 		const httpServer = http.servers[serverConfig.httpServer]
 
-		servers[serverName] = new WebSocket.Server({ server: httpServer })
+		servers[serverName] = new WebSocketServer({ server: httpServer })
 	}
 
 	return { server: servers.default, servers }

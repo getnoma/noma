@@ -38,8 +38,8 @@ export async function loadConfigDir (dir, environment) {
 export function validateConfig (config, configSchema) {
 	debug('validateConfig(%O, %O)', config, configSchema)
 
-	var ajv = new Ajv({ $data: true, coerceTypes: true, allErrors: true, nullable: true, useDefaults: true })
-	var validate = ajv.compile(configSchema)
+	const ajv = new Ajv({ $data: true, coerceTypes: true, allErrors: true, strictTuples: false, allowUnionTypes: true, useDefaults: true })
+	const validate = ajv.compile(configSchema)
 
 	if (validate(config)) {
 		return true

@@ -61,6 +61,8 @@ properties:
                             type: integer
                         additionalProperties: false
                     additionalItems: false
+                    minItems: 1
+                  minItems: 0
               additionalProperties: false
         additionalProperties: false
     required:

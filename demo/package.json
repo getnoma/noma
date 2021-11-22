@@ -10,7 +10,10 @@
     "start": "concurrently -r \"npm:start:*\"",
     "start:web": "noma demo/web",
     "start:worker": "noma demo/worker",
-    "test": "cross-env NODE_ENV=test mocha"
+    "test": "cross-env NODE_ENV=test mocha",
+    "watch": "concurrently -r \"npm:watch:*\"",
+    "watch:web": "nodemon -w src/web -e js,yml -x npm run start:web",
+    "watch:worker": "nodemon -w src/worker -e js,yml -x npm run start:worker"
   },
   "author": "",
   "license": "MIT",
@@ -29,7 +32,8 @@
     "@noma/core": "^1.1.0",
     "chai": "4.3.4",
     "cross-env": "7.0.3",
-    "mocha": "9.1.1"
+    "mocha": "9.1.1",
+    "nodemon": "2.0.15"
   },
   "mocha": {
     "exit": true,

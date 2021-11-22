@@ -15,7 +15,7 @@ export default async function ({ config }) {
 
 	if (connections) {
 		for (const connection in connections) {
-			const { collections, connectionString, useNewUrlParser, useUnifiedTopology  } = connections[connection]
+			const { collections, connectionString, useNewUrlParser, useUnifiedTopology } = connections[connection]
 
 			const client = await MongoClient.connect(connectionString, {
 				useNewUrlParser,

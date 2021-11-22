@@ -115,6 +115,16 @@ Run
 $ npm start
 ```
 
+### Watching for changes
+
+`noma` works well with `nodemon`.
+
+``` bash
+$ nodemon -e js,yml -x noma .
+```
+
+See [nodemon](https://www.npmjs.com/package/nodemon) for more details.
+
 ## Packages
 
 - [@noma/cli](packages/@noma/cli/README.md)

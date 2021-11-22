@@ -56,7 +56,7 @@ export default async function ({ config }) {
 		}
 	}
 
-	const defaultConnection = mongodb.connections && mongodb.connections.default
+	const defaultConnection = mongodb?.connections?.default
 
 	if (defaultConnection) {
 		mongodb = {

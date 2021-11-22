@@ -11,23 +11,46 @@ properties:
         properties:
           connectionString:
             title: Connection String
-            description: ""
             type: string
+          useNewUrlParser:
+            title: Use New Url Parser
+            type: boolean
+            default: true
+          useUnifiedTopology:
+            title: Use Unified Topology
+            type: boolean
+            default: true
           collections:
             title: Collections
-            description: ""
             type: object
             additionalProperties:
-              description: ""
               type: object
               properties:
-                schema:
-                  title: Schema
-                  description: JSON Schema
+                validator:
+                  title: Validator
                   type: object
+                  properties:
+                    $jsonSchema:
+                      title: JSON Schema
+                      type: object
+                  additionalProperties: false
+                validationLevel:
+                  title: Validation Level
+                  type: string
+                  enum:
+                    - off
+                    - moderate
+                    - strict
+                  default: strict
+                validationAction:
+                  title: Validation Action
+                  type: string
+                  enum:
+                    - error
+                    - warn
+                  default: error
                 indexes:
                   title: Indexes
-                  description: ""
                   type: array
                   items:
                     type: array
@@ -35,7 +58,6 @@ properties:
                       - title: Index Specification
                         type: object
                         additionalProperties:
-                          description: ""
                           type:
                             - integer
                             - string

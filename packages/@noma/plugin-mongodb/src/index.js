@@ -15,18 +15,18 @@ export default async function ({ config }) {
 
 	if (connections) {
 		for (const connection in connections) {
-			const { connectionString, collections } = connections[connection]
+			const { collections, connectionString, useNewUrlParser, useUnifiedTopology  } = connections[connection]
 
 			const client = await MongoClient.connect(connectionString, {
-				useNewUrlParser: true,
-				useUnifiedTopology: true
+				useNewUrlParser,
+				useUnifiedTopology
 			})
 
 			const db = client.db()
 
 			if (collections) {
 				for (const collection in collections) {
-					const { indexes, schema } = collections[collection]
+					const { indexes, validator, validationAction, validationLevel } = collections[collection]
 
 					for (const index of indexes || []) {
 						const fields = index[0]
@@ -35,13 +35,12 @@ export default async function ({ config }) {
 						await db.collection(collection).createIndex(fields, options)
 					}
 
-					if (schema) {
+					if (validator) {
 						await db.command({
 							collMod: collection,
-							validator: {
-								$jsonSchema: schema
-							},
-							validationLevel: 'strict'
+							validator,
+							validationAction,
+							validationLevel
 						})
 					}
 				}

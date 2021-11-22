@@ -19,7 +19,6 @@ config/default.yml:
 mongodb:
   connections:
     default:
-      connectionString: "mongodb://default"
       collections:
         users:
           indexes:
@@ -27,20 +26,27 @@ mongodb:
               - unique: 1
             - - name: 1
               - unique: 1
-          schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
+          validator:
+            $jsonSchema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+          validationAction: error
+          validationLevel: strict
+      connectionString: "mongodb://default"
+      useNewUrlParser: true
+      useUnifiedTopology: true
+          
 ```
 
 main.js:
 
 ```js
 export default async function main({ mongodb }) {
-  const { client, collections, connectionString, db, connections } = mongodb;
+  const { client, collections, connections, connectionString, db } = mongodb;
 }
 ```
 

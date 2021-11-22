@@ -1,3 +1,52 @@
+mongodb:
+  connections: 
+    default:
+      collections:
+        bar:
+          indexes:
+            - - id: 1
+              - unique: true
+          validator:
+            $jsonSchema:
+              type: object
+              properties:
+                id:
+                  type: string
+              required:
+                - id
+          validationLevel: strict
+          validationAction: error
+        baz:
+          indexes:
+            - - id: 1
+              - unique: true
+          validator:
+            $jsonSchema:
+              type: object
+              properties:
+                id:
+                  type: string
+              required:
+                - id
+          validationLevel: moderate
+          validationAction: warn
+        foo:
+          indexes:
+            - - id: 1
+              - unique: true
+          validator:
+            $jsonSchema:
+              type: object
+              properties:
+                id:
+                  type: string
+              required:
+                - id
+          validationLevel: off
+        qux:
+          indexes:
+            - - id: 1
+              - unique: true
 demo:
   web:
     message: 'Hello, I am web'

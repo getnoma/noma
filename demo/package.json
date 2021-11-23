@@ -1,6 +1,6 @@
 {
   "name": "demo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "exports": {
     "./web": "./src/web/main.js",
@@ -22,7 +22,7 @@
     "@noma/plugin-amqplib": "^1.1.0",
     "@noma/plugin-express": "^1.1.0",
     "@noma/plugin-http": "^1.1.0",
-    "@noma/plugin-mongodb": "^1.1.0",
+    "@noma/plugin-mongodb": "^2.0.0",
     "@noma/plugin-ws": "^1.1.0",
     "concurrently": "^6.2.1"
   },

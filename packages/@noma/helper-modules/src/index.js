@@ -11,17 +11,17 @@ export async function loadModule (id, basedir) {
 
 	return import(href).catch(err => {
 		if (err instanceof SyntaxError && !err.stack.includes(file)) {
-			const newErrorWithFilename = new SyntaxError(err.message);
+			const newErrorWithFilename = new SyntaxError(err.message)
 
 			newErrorWithFilename.stack = err.stack.replace(
 				/^SyntaxError/,
 				`SyntaxError[ @${file} ]`
-			);
+			)
 
-			throw newErrorWithFilename;
+			throw newErrorWithFilename
 		}
-		
-		throw err;
+
+		throw err
 	})
 }
 

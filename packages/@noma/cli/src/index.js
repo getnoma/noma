@@ -16,9 +16,9 @@ async function main () {
 			try {
 				await core(id, { debug })
 			} catch (err) {
-				console.error(err);
+				console.error(err)
 
-				process.exit(1);
+				process.exit(1)
 			}
 		})
 

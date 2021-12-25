@@ -1,6 +1,6 @@
 {
   "name": "@noma/helper-packages",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@noma/helper-json": "^1.1.0",
-    "@noma/helper-modules": "^1.1.0",
+    "@noma/helper-modules": "^1.1.1",
     "resolve": "^1.20.0",
     "toposort": "^2.0.2"
   },

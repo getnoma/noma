@@ -9,7 +9,20 @@ export async function loadModule (id, basedir) {
 	const { file } = await resolveModule(id, basedir)
 	const { href } = url.pathToFileURL(file)
 
-	return import(href)
+	return import(href).catch(err => {
+		if (err instanceof SyntaxError && !err.stack.includes(file)) {
+			const newErrorWithFilename = new SyntaxError(err.message);
+
+			newErrorWithFilename.stack = err.stack.replace(
+				/^SyntaxError/,
+				`SyntaxError[ @${file} ]`
+			);
+
+			throw newErrorWithFilename;
+		}
+		
+		throw err;
+	})
 }
 
 export async function resolveModule (id, basedir) {

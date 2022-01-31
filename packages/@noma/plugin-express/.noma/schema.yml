@@ -15,4 +15,3 @@ properties:
             title: HTTP(S) Server ID
             type: string
     nullable: true
-additionalProperties: false

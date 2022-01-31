@@ -1,6 +1,6 @@
 {
   "name": "@noma/plugin-express",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -28,9 +28,9 @@
   "type": "module",
   "private": false,
   "devDependencies": {
-    "@noma/eslint-config-noma": "^1.1.0",
-    "@noma/eslint-config-noma-test": "^1.1.0",
-    "@noma/plugin-http": "^1.1.0",
+    "@noma/eslint-config-noma": "^1.1.1",
+    "@noma/eslint-config-noma-test": "^1.1.1",
+    "@noma/plugin-http": "^1.1.1",
     "chai": "^4.3.4",
     "eslint": "7.32.0",
     "eslint-plugin-import": "2.24.2",

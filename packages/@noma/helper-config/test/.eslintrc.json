@@ -1,3 +1,5 @@
 {
-  "extends": ["@noma/eslint-config-noma-test"]
+  "extends": [
+    "../../../../test/.eslintrc.json"
+  ]
 }

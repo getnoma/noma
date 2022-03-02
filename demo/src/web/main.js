@@ -1,15 +1,15 @@
-export default async function main({ config, debug, express }) {
-  console.info(config.web.message)
+export default async function main ({ config, debug, express }) {
+	console.info(config.web.message)
 
-  const { app } = express;
+	const { app } = express
 
-  app.get('/', (req, res) => {
-    debug('GET /');
+	app.get('/', (req, res) => {
+		debug('GET /')
 
-    res.send('HELLO WORLD');
-  });
+		res.send('HELLO WORLD')
+	})
 
-  return {
-    web: true
-  }
+	return {
+		web: true
+	}
 }

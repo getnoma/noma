@@ -7,9 +7,5 @@
 	"license": "MIT",
 	"dependencies": {
 		"@noma/eslint-config-noma": "^1.1.1"
-	},
-	"devDependencies": {
-		"chai": "4.3.4",
-		"mocha": "9.1.1"
 	}
 }

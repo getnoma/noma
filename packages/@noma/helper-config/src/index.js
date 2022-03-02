@@ -76,19 +76,19 @@ function getConfigFiles (dir, environment) {
 export function getConfigDirs (dir, basedir) {
 	debug('getConfigDirs("%s, %s")', dir, basedir)
 
+	const dirnames = [appendNomaFolder(dir)]
+
 	let dirname = dir
-	const dirnames = []
-
-	while (true) {
-		dirnames.push(path.join(dirname, '.noma'))
+	while (dirname !== basedir) {
 		dirname = path.resolve(path.join(dirname, '..'))
-
-		if (dirname !== basedir) {
-			break
-		}
+		dirnames.push(appendNomaFolder(dirname))
 	}
 
 	return dirnames.reverse()
+}
+
+function appendNomaFolder (dirname) {
+	return path.join(dirname, '.noma')
 }
 
 function getConfigSchemaFiles (dir) {

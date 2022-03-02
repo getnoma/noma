@@ -8,7 +8,7 @@
     "lerna:update": "lerna bootstrap",
     "ncu": "lerna exec \"ncu -u\"",
     "lerna:clean": "lerna clean",
-    "fix": "lerna run fix",
+    "fix": "eslint --fix .",
     "lerna:publish": "lerna publish",
     "postinstall": "npm run lerna:bootstrap",
     "start:demo": "lerna exec npm start --scope demo",

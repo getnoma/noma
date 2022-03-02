@@ -4,7 +4,6 @@
   "description": "JSON Helpers",
   "main": "./src/index.js",
   "scripts": {
-    "fix": "eslint --fix src test",
     "test": "mocha"
   },
   "author": "",

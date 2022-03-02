@@ -7,7 +7,6 @@
     "noma": "./bin/index.js"
   },
   "scripts": {
-    "fix": "eslint --fix src test",
     "test": "mocha test/**/*.test.js"
   },
   "author": "",

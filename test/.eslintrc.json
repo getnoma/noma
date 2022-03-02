@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "@noma/eslint-config-noma-test"
+  ]
+}

@@ -8,12 +8,14 @@
     "lerna:update": "lerna bootstrap",
     "ncu": "lerna exec \"ncu -u\"",
     "lerna:clean": "lerna clean",
-    "fix": "lerna run fix",
+    "fix": "eslint --fix .",
     "lerna:publish": "lerna publish",
     "postinstall": "npm run lerna:bootstrap",
     "start:demo": "lerna exec npm start --scope demo",
     "start": "lerna run start --parallel",
-    "test": "lerna run test"
+    "test": "lerna run test && npm run test:eslint",
+    "test:eslint": "mocha",
+    "preversion": "npm test"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,15 @@
   "type": "module",
   "private": false,
   "devDependencies": {
-    "lerna": "4.0.0"
+    "@noma/eslint-config-noma": "^1.1.1",
+    "@noma/eslint-config-noma-test": "^1.1.1",
+    "chai": "^4.3.4",
+    "eslint": "^8.10.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "lerna": "4.0.0",
+    "mocha": "^9.1.1",
+    "mocha-eslint": "7.0.0"
   }
 }

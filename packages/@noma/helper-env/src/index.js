@@ -6,7 +6,6 @@ const debug = createDebug()
 
 try {
   const envPath = path.join(process.cwd(), 'env.json')
-
   const env = await loadJsonFile(envPath)
 
   debug('loaded %s', envPath)

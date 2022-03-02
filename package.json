@@ -14,7 +14,8 @@
     "start:demo": "lerna exec npm start --scope demo",
     "start": "lerna run start --parallel",
     "test": "lerna run test && npm run test:eslint",
-    "test:eslint": "mocha"
+    "test:eslint": "mocha",
+    "preversion": "npm test"
   },
   "repository": {
     "type": "git",

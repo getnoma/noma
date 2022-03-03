@@ -10,6 +10,11 @@
   "scripts": {
     "test": "mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getnoma/noma.git",
+    "directory": "packages/@noma/helper-modules"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {

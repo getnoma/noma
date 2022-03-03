@@ -6,6 +6,11 @@
   "scripts": {
     "test": "mocha test/**/*.spec.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getnoma/noma.git",
+    "directory": "packages/@noma/plugin-mongodb"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {

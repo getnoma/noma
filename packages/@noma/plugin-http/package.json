@@ -6,6 +6,11 @@
   "scripts": {
     "test": "mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getnoma/noma.git",
+    "directory": "packages/@noma/plugin-http"
+  },
   "author": "",
   "license": "MIT",
   "type": "module",

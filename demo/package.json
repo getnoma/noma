@@ -15,6 +15,11 @@
     "watch:web": "nodemon -w src/web -e js,yml -x npm run start:web",
     "watch:worker": "nodemon -w src/worker -e js,yml -x npm run start:worker"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getnoma/noma.git",
+    "directory": "demo"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {

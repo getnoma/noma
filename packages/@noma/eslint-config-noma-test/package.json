@@ -1,11 +1,11 @@
 {
 	"name": "@noma/eslint-config-noma-test",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "",
 	"main": "index.js",
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
-		"@noma/eslint-config-noma": "^1.1.1"
+		"@noma/eslint-config-noma": "^1.1.2"
 	}
 }

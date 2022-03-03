@@ -1,6 +1,6 @@
 {
   "name": "@noma/core",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -15,12 +15,12 @@
   "license": "MIT",
   "homepage": "https://github.com/getnoma/noma/tree/main/packages/%40noma/core#readme",
   "dependencies": {
-    "@noma/helper-config": "^1.1.4",
-    "@noma/helper-debug": "^1.1.4",
-    "@noma/helper-env": "^1.1.4",
-    "@noma/helper-modules": "^1.1.4",
-    "@noma/helper-objects": "^1.1.4",
-    "@noma/helper-packages": "^1.1.4",
+    "@noma/helper-config": "^1.1.5",
+    "@noma/helper-debug": "^1.1.5",
+    "@noma/helper-env": "^1.1.5",
+    "@noma/helper-modules": "^1.1.5",
+    "@noma/helper-objects": "^1.1.5",
+    "@noma/helper-packages": "^1.1.5",
     "dot-prop": "^6.0.1",
     "mustache": "^4.2.0"
   },

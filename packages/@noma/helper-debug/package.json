@@ -1,6 +1,6 @@
 {
   "name": "@noma/helper-debug",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "",
   "main": "./src/index.js",
   "scripts": {
@@ -17,7 +17,7 @@
   "type": "module",
   "private": false,
   "dependencies": {
-    "@noma/helper-packages": "^1.1.4",
+    "@noma/helper-packages": "^1.1.5",
     "callsites": "^4.0.0",
     "debug": "^4.3.2",
     "supports-color": "^9.0.2"

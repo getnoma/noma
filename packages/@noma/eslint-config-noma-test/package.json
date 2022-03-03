@@ -10,6 +10,7 @@
 		"url": "https://github.com/getnoma/noma.git",
 		"directory": "packages/@noma/eslint-config-noma-test"
 	},
+	"homepage": "https://github.com/getnoma/noma/tree/main/packages/%40noma/eslint-config-noma-test#readme",
 	"dependencies": {
 		"@noma/eslint-config-noma": "^1.1.3"
 	}

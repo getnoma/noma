@@ -13,6 +13,7 @@
   },
   "author": "",
   "license": "MIT",
+  "homepage": "https://github.com/getnoma/noma/tree/main/packages/%40noma/plugin-ws#readme",
   "dependencies": {
     "@noma/plugin-http": "^1.1.3",
     "ws": "^8.2.1"

@@ -17,6 +17,7 @@
   },
   "author": "",
   "license": "MIT",
+  "homepage": "https://github.com/getnoma/noma/tree/main/packages/%40noma/helper-modules#readme",
   "dependencies": {
     "resolve": "^1.20.0",
     "toposort": "^2.0.2"

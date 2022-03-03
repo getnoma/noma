@@ -16,6 +16,7 @@
   },
   "author": "",
   "license": "MIT",
+  "homepage": "https://github.com/getnoma/noma/tree/main/packages/%40noma/cli#readme",
   "type": "module",
   "private": false,
   "dependencies": {

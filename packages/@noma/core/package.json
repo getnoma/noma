@@ -13,6 +13,7 @@
   },
   "author": "",
   "license": "MIT",
+  "homepage": "https://github.com/getnoma/noma/tree/main/packages/%40noma/core#readme",
   "dependencies": {
     "@noma/helper-config": "^1.1.4",
     "@noma/helper-debug": "^1.1.4",

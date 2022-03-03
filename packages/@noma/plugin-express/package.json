@@ -13,6 +13,7 @@
   },
   "author": "",
   "license": "MIT",
+  "homepage": "https://github.com/getnoma/noma/tree/main/packages/%40noma/plugin-express#readme",
   "dependencies": {
     "@types/express": "^4.17.13",
     "express": "^4.17.1"

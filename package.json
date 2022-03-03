@@ -30,8 +30,8 @@
   "type": "module",
   "private": false,
   "devDependencies": {
-    "@noma/eslint-config-noma": "^1.1.1",
-    "@noma/eslint-config-noma-test": "^1.1.1",
+    "@noma/eslint-config-noma": "./packages/@noma/eslint-config-noma",
+    "@noma/eslint-config-noma-test": "./packages/@noma/eslint-config-noma-test",
     "chai": "^4.3.4",
     "eslint": "^8.10.0",
     "eslint-plugin-import": "^2.25.4",
